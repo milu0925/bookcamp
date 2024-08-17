@@ -30,10 +30,18 @@ body {
   margin: 0;
   a {
     text-decoration: none;
+    color: black;
+    &:active{
+      color: inherit;
+      text-decoration: none;
+    }
     &:visited {
       color: inherit;
       text-decoration: none;
     }
+  }
+  button{
+    border: 0;
   }
   header{
     position: sticky;
@@ -41,6 +49,17 @@ body {
     z-index: 99;
   }
 }
+
+#bgVideo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -999;
+}
+
 
 
 /* ------------- 拉把樣式 -------------- */
@@ -73,6 +92,26 @@ body {
 
 /* ------------------- */
 
+/* 商品加入購物車按鈕 */
+.pixel-border-add {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  font-weight: bold;
+  box-shadow:
+    0 0 0 1px var(--main-yellow),
+    0 5px 0 -1px var(--main-yellow),
+    4px 0 0 -1px var(--main-yellow),
+    0 0 0 1px var(--main-yellow),
+    0 -5px 0 -1px var(--main-yellow),
+    -4px 0 0 -1px var(--main-yellow),
+    0 0 0 3px var(--black),
+    0 6px 0 0 var(--black),
+    0 -6px 0 0 var(--black),
+    5px 0 0 0 var(--black),
+    -5px 0 0 0 var(--black);
+}
+
 
 // 共用btn 顏色外框
 .pixel-border-yellow {
@@ -88,4 +127,15 @@ body {
 .pixel-border-white {
   box-shadow: 4px 0 0 rgb(200, 200, 200), -4px 0 0 white, 0 -4px 0 white,
     0 4px 0 rgb(200, 200, 200);
+}
+// 底色
+.bg-purple {
+  background-color: var(--main-purple);
+}
+
+.dr-bg-purple {
+  background-color: var(--main-darkpurple);
+}
+.br-bg-purple {
+  background-color: var(--main-brightpurple);
 }

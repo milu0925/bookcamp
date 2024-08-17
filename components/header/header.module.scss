@@ -25,6 +25,7 @@
       align-items: center;
       position: relative;
       background-color: var(--white);
+      transition: 0.3s;
       svg {
         width: 50%;
         height: 50%;
@@ -46,6 +47,12 @@
         font-weight: 600;
         color: var(--white);
       }
+      &:hover {
+        scale: 0.94;
+        svg {
+          transform: scale(1.24);
+        }
+      }
     }
     .header_btn_login {
       height: 40px;
@@ -56,6 +63,8 @@
       white-space: nowrap;
       font-weight: bold;
       text-align: center;
+      &:hover {
+      }
     }
   }
 }

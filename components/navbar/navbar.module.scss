@@ -131,3 +131,31 @@
     }
   }
 }
+
+// 動畫
+.nav_line_bg {
+  width: 100%;
+  position: absolute;
+  top: 26%;
+  height: 8px;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.nav_line_bg_org {
+  width: 80%;
+  position: absolute;
+  top: 40%;
+  border: 2px dashed var(--main-yellow);
+  z-index: -1;
+  animation: slideRight 3s steps(30) infinite;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100vw); /* 往右位移100px */
+  }
+}

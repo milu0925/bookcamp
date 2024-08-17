@@ -37,7 +37,11 @@ export default function Navbar() {
 
   return (
     <div className={style.navbar}>
-      <div className={style.navbar_line}></div>
+      <div className={style.navbar_line}>
+        <div className={style.nav_line_bg}>
+          <div className={style.nav_line_bg_org}></div>
+        </div>
+      </div>
       <div className={style.navbar_group}>
         <div className={style.navbar_btn}>
           <Link
