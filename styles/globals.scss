@@ -31,7 +31,7 @@ body {
   a {
     text-decoration: none;
     color: black;
-    &:active{
+    &:active {
       color: inherit;
       text-decoration: none;
     }
@@ -40,13 +40,27 @@ body {
       text-decoration: none;
     }
   }
-  button{
-    border: 0;
+  ul,
+  li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
   }
-  header{
+  button {
+    border: 0;
+    background: transparent;
+  }
+  header {
     position: sticky;
     top: 0;
     z-index: 99;
+  }
+  select {
+    background: transparent;
+    border: none;
+    &:focus {
+      outline: none;
+    }
   }
 }
 
@@ -59,8 +73,6 @@ body {
   object-fit: cover;
   z-index: -999;
 }
-
-
 
 /* ------------- 拉把樣式 -------------- */
 /* width */
@@ -89,33 +101,64 @@ body {
   background: var(--main-purple);
 }
 
-
 /* ------------------- */
 
+.l-book {
+  display: flex;
+  margin: 1rem 0 5rem 0;
+}
+.l-cart{
+  width: 90%;
+  display: flex;
+  margin: 1rem auto 5rem auto;
+
+}
+
 /* 商品加入購物車按鈕 */
+.price-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  color: white;
+  font-family: "zpix";
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    width: 80%;
+    height: 30px;
+  }
+  button {
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    color: var(--black);
+    cursor: pointer;
+  }
+  svg {
+    font-size: 24px;
+  }
+}
 .pixel-border-add {
   width: 30px;
   height: 30px;
-  position: absolute;
   font-weight: bold;
-  box-shadow:
-    0 0 0 1px var(--main-yellow),
-    0 5px 0 -1px var(--main-yellow),
-    4px 0 0 -1px var(--main-yellow),
-    0 0 0 1px var(--main-yellow),
-    0 -5px 0 -1px var(--main-yellow),
-    -4px 0 0 -1px var(--main-yellow),
-    0 0 0 3px var(--black),
-    0 6px 0 0 var(--black),
-    0 -6px 0 0 var(--black),
-    5px 0 0 0 var(--black),
-    -5px 0 0 0 var(--black);
+  background-color: var(--main-yellow);
+  box-shadow: 0 0 0 1px var(--main-yellow), 0 5px 0 -1px var(--main-yellow),
+    4px 0 0 -1px var(--main-yellow), 0 0 0 1px var(--main-yellow),
+    0 -5px 0 -1px var(--main-yellow), -4px 0 0 -1px var(--main-yellow),
+    0 0 0 3px var(--black), 0 6px 0 0 var(--black), 0 -6px 0 0 var(--black),
+    5px 0 0 0 var(--black), -5px 0 0 0 var(--black);
 }
 
-
-// 共用btn 顏色外框
+// 共用顏色外框
 .pixel-border-yellow {
-  background-color: var(--main-yellow);
   box-shadow: 0 0 0 2px var(--main-yellow), 0 4px 0 #ffa81d, 4px 0 0 #ffa81d,
     0 -4px 0 var(--main-yellow), -4px 0 0 var(--main-yellow),
     4px 2px 0 var(--black), 4px -2px 0 var(--black), -4px 2px 0 var(--black),
@@ -128,14 +171,36 @@ body {
   box-shadow: 4px 0 0 rgb(200, 200, 200), -4px 0 0 white, 0 -4px 0 white,
     0 4px 0 rgb(200, 200, 200);
 }
+
+.pixel-border-black {
+  box-shadow: 3px 0 0 var(--black), -3px 0 0 var(--black), 0 -3px 0 var(--black),
+    0 3px 0 var(--black);
+}
+
+
+.pixel-border-purple {
+  box-shadow: 0 -3px 0 var(--main-brightpurple),
+    -3px 0 0 var(--main-brightpurple), 0 3px 0 var(--main-colorpurple),
+    3px 0 0 var(--main-colorpurple), 6px 0 0 var(--black), -6px 0 0 var(--black),
+    0 6px 0 var(--black), 0 -6px 0 var(--black), 0 0 0 3px var(--black);
+}
+
 // 底色
 .bg-purple {
   background-color: var(--main-purple);
 }
-
-.dr-bg-purple {
+.bg-bright-purple {
+  background-color: var(--main-brightpurple);
+}
+.bg-dark-purple {
   background-color: var(--main-darkpurple);
 }
-.br-bg-purple {
-  background-color: var(--main-brightpurple);
+.bg-yellow {
+  background-color: var(--main-yellow);
+}
+.bg-black {
+  background-color: var(--black);
+}
+.bg-white {
+  background-color: var(--white);
 }

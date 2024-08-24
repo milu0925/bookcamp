@@ -99,17 +99,17 @@ export default function HotList(props) {
                   </span>
 
                   <div
-                    className={`${style.hotlist_card_content} pixel-border-purple br-bg-purple`}
+                    className={`${style.hotlist_card_content} pixel-border-purple bg-bright-purple`}
                   >
                     <Link href="/">
                       <img alt="book" src="/images/book/lover.png" />
                     </Link>
-                    <div>
+                    <div className={style.hotlist_btn_group}>
                       <div className={style.sale_block}>
                         銷售量<span>100</span>本
                       </div>
-                      <div className={style.price_area}>
-                        <div className="pixel-d-purple dr-bg-purple">
+                      <div className="price-area">
+                        <div className="pixel-d-purple bg-dark-purple">
                           <MdAttachMoney />
                           999元
                         </div>

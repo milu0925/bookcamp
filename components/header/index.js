@@ -53,7 +53,7 @@ export default function Header() {
         <div>
           <Link
             href="/cart"
-            className={`${style.header_btn_cart} pixel-border-white`}
+            className={`${style.header_btn_cart} pixel-border-white bg-white`}
           >
            <FaCartShopping />
             <span className={style.header_btn_cart_count}>
@@ -62,12 +62,12 @@ export default function Header() {
           </Link>
         </div>
         <div>
-          <Link
-            href="/member/login"
-            className={`${style.header_btn_login} pixel-border-yellow`}
+          {/* <Link
+            href="/user/login"
+            className={`${style.header_btn_login} pixel-border-yellow bg-yellow`}
           >
             登入/註冊
-          </Link>
+          </Link> */}
           {/* {user ? (
             <Link
               href="/member/"
