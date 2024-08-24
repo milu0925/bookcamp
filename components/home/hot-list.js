@@ -1,62 +1,33 @@
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
-import axios from "axios";
 import style from "./hot-list.module.scss";
 import "slick-carousel/slick/slick.css";
 import Link from "next/link";
 import { MdAttachMoney } from "react-icons/md";
 import { FaCartPlus } from "react-icons/fa";
-export default function HotList(props) {
-  // 熱銷榜的書
-  const [hotList, setHotList] = useState([]);
-  // 抓到資料
-  useEffect(() => {
-    const data = async () => {
-      try {
-        await axios
-          .get("http://localhost:3002/share/hotList")
-          .then((res) => {
-            setHotList(res.data.hot);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    data();
-  }, []);
-
+export default function HotList({ data }) {
   const [slidesToShow, setSlidesToShow] = useState(1.2); // 初始值為 1
 
   useEffect(() => {
-    // 監聽螢幕寬度的變化
-    const handleResize = () => {
-      // 根據螢幕寬度設置展示的張數
-      if (window.innerWidth >= 1400) {
-        setSlidesToShow(4);
-      } else if (window.innerWidth >= 768) {
-        setSlidesToShow(2.5);
-      } else if (window.innerWidth >= 768) {
-        setSlidesToShow(1.7);
-      } else {
-        setSlidesToShow(1.2);
-      }
-    };
-
-    // 監聽窗口大小變化事件
     window.addEventListener("resize", handleResize);
-
-    // 初始調用一次以設置初始值
-    handleResize();
-
-    // 清除事件監聽
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  // 根據螢幕寬度設置展示的張數
+  const handleResize = () => {
+    if (window.innerWidth >= 1400) {
+      setSlidesToShow(4);
+    } else if (window.innerWidth >= 768) {
+      setSlidesToShow(2.5);
+    } else if (window.innerWidth >= 768) {
+      setSlidesToShow(1.7);
+    } else {
+      setSlidesToShow(1.2);
+    }
+  };
 
+  //Slider 設定
   const settings = {
     dots: true,
     infinite: true,
@@ -67,6 +38,7 @@ export default function HotList(props) {
     autoplaySpeed: 1000,
     cssEase: "linear",
   };
+  console.log(data);
 
   return (
     <div className={style.l_hotlist}>
@@ -86,9 +58,9 @@ export default function HotList(props) {
       </div>
       <div className={`${style.col_hotlist}`}>
         <Slider {...settings} className={style.custom_slider}>
-          {hotList.map((item, index) => {
-            return (
-              <div key={index} className={style.hotlist_card}>
+          {data &&
+            data.map((v, index) => (
+              <div key={v.b_id} className={style.hotlist_card}>
                 <div>
                   <span className={style.hotlist_card_rank}>
                     <img alt="rank" src="/images/icon-pixel/no1_1.svg" />
@@ -106,12 +78,12 @@ export default function HotList(props) {
                     </Link>
                     <div className={style.hotlist_btn_group}>
                       <div className={style.sale_block}>
-                        銷售量<span>100</span>本
+                        銷售量<span>{v.b_sales}</span>本
                       </div>
                       <div className="price-area">
                         <div className="pixel-d-purple bg-dark-purple">
                           <MdAttachMoney />
-                          999元
+                          {v.b_price}元
                         </div>
                         <button className="pixel-border-add">
                           <FaCartPlus />
@@ -121,8 +93,7 @@ export default function HotList(props) {
                   </div>
                 </div>
               </div>
-            );
-          })}
+            ))}
         </Slider>
       </div>
       <div

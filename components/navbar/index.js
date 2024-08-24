@@ -44,11 +44,7 @@ export default function Navbar() {
       </div>
       <div className={style.navbar_group}>
         <div className={style.navbar_btn}>
-          <Link
-            onMouseEnter={() => handleMouseEnter("book")}
-            onMouseLeave={handleMouseLeave}
-            href="/book"
-          >
+          <Link onMouseEnter={() => handleMouseEnter("book")} href="/book">
             實體書籍
           </Link>
           <Link href="/help">客服幫助</Link>
