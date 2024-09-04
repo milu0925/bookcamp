@@ -9,6 +9,7 @@ export default function HotList({ data }) {
   const [slidesToShow, setSlidesToShow] = useState(1.2); // 初始值為 1
 
   useEffect(() => {
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -38,7 +39,6 @@ export default function HotList({ data }) {
     autoplaySpeed: 1000,
     cssEase: "linear",
   };
-  console.log(data);
 
   return (
     <div className={style.l_hotlist}>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import style from "./navbar.module.scss";
+import { FaSearch } from "react-icons/fa";
 export default function Navbar() {
   //開啟下拉選單
   const [isHovered, setIsHovered] = useState(false);
@@ -10,8 +11,8 @@ export default function Navbar() {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-
   const [searchValue, setSearchValue] = useState(""); //大搜尋
+  const [rwdOpenSearch,setrwdOpenSearch] =useState(false);
   //監聽事件 按下Enter 可以搜尋
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && searchValue.trim()) {
@@ -36,47 +37,72 @@ export default function Navbar() {
   ];
 
   return (
-    <div className={style.navbar}>
-      <div className={style.navbar_line}>
-        <div className={style.nav_line_bg}>
-          <div className={style.nav_line_bg_org}></div>
+    <>
+      {/* 電腦版 */}
+      <div className={style.navbar}>
+        <div className={style.navbar_line}>
+          <div className={style.nav_line_bg}>
+            <div className={style.nav_line_bg_org}></div>
+          </div>
         </div>
-      </div>
-      <div className={style.navbar_group}>
-        <div className={style.navbar_btn}>
-          <Link onMouseEnter={() => handleMouseEnter("book")} href="/book">
-            實體書籍
-          </Link>
-          <Link href="/help">客服幫助</Link>
-          <Link href="/forum">討論交流</Link>
+        <div className={style.navbar_group}>
+          <div className={style.navbar_btn}>
+            <Link onMouseEnter={() => handleMouseEnter("book")} href="/book">
+              實體書籍
+            </Link>
+            <Link href="/help">客服幫助</Link>
+            <Link href="/forum">討論交流</Link>
+          </div>
+          <div className={style.navbar_search}>
+            <input
+              placeholder="找啥書?"
+              type="text"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <button type="submit">搜尋</button>
+          </div>
         </div>
-        <div className={style.navbar_search}>
-          <input
-            placeholder="找啥書?"
-            type="text"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <button type="submit">搜尋</button>
-        </div>
-      </div>
 
-      <div
-        className={`${style.slide_list} ${
-          isHovered === "book" ? style.open : ""
-        }`}
-        onMouseEnter={() => handleMouseEnter("book")}
-        onMouseLeave={handleMouseLeave}
-      >
-        <div className={style.slide_list_btn}>
-          {bookdata.map((v) => (
-            <div className={style.slide_list_link}>
-              <Link href={`/book?genre_id=/${v.id}`}>{v.name}</Link>
-            </div>
-          ))}
+        <div
+          className={`${style.slide_list} ${
+            isHovered === "book" ? style.open : ""
+          }`}
+          onMouseEnter={() => handleMouseEnter("book")}
+          onMouseLeave={handleMouseLeave}
+        >
+          <div className={style.slide_list_btn}>
+            {bookdata.map((v) => (
+              <div className={style.slide_list_link}>
+                <Link href={`/book?genre_id=/${v.id}`}>{v.name}</Link>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
+      {/* 手機板 */}
+      <div className={style.m_navbar}>
+        <button className={style.m_navbar_search} type="button" onClick={()=>setrwdOpenSearch(!rwdOpenSearch)}>
+         <FaSearch />
+        </button>
+        <div className={`${style.m_navbar_search_area} ${rwdOpenSearch ? "":style.m_navbar_close }`}>
+          <div>
+            <input
+              placeholder="找啥書?"
+              type="text"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </div>
+        </div>
+        <div className={style.m_navbar_content}>
+          <Link href="#/">實體書籍</Link>
+          <Link href="#/">客服幫助</Link>
+          <Link href="#/">討論交流</Link>
+        </div>
+      </div>
+    </>
   );
 }

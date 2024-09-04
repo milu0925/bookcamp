@@ -7,7 +7,15 @@ import { FaGoogle } from "react-icons/fa";
 import { FaCcVisa } from "react-icons/fa";
 import { PiWarningCircleFill } from "react-icons/pi";
 import { FaRegCopyright } from "react-icons/fa";
+import { useRouter } from "next/router";
 export default function Footer() {
+  const router = useRouter();
+  const hideFooter = ['/user','/user/login', '/user/register'].includes(router.pathname); 
+
+
+  if (hideFooter) {
+    return null;
+  }
   return (
     <div className={style.footer}>
       <div className={style.footer_top}>

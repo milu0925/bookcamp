@@ -18,7 +18,7 @@
     z-index: -1;
   }
   .navbar_group {
-    width: 60%;
+    width: 70%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -52,7 +52,6 @@
   .navbar_search {
     width: 100%;
     max-width: 350px;
-    min-width: 150px;
     position: relative;
     display: flex;
     border: 4px solid var(--main-brightpurple);
@@ -87,6 +86,83 @@
         color: rgb(255, 255, 255);
         background-color: var(--main-colorpurple);
       }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .navbar .navbar_group {
+    width: 85%;
+  }
+}
+
+.m_navbar {
+  display: none;
+  justify-content: center;
+  background-color: var(--main-darkpurple);
+  filter: drop-shadow(0 3px 2px var(--main-purple));
+  padding-bottom: 0.4rem;
+  .m_navbar_content {
+    display: flex;
+    overflow-x: auto;
+    margin-left: 0.5rem;
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      white-space: nowrap;
+      background: linear-gradient(
+        45deg,
+        var(--main-colorpurple) 0%,
+        var(--main-colorpurple) 45%,
+        var(--main-brightpurple) 45%,
+        var(--main-brightpurple) 60%,
+        var(--main-colorpurple) 60%,
+        var(--main-colorpurple) 100%
+      );
+      box-shadow: 3px 0 0 var(--main-colorpurple),
+        -3px 0 0 var(--main-colorpurple), 0 -3px 0 var(--main-colorpurple),
+        0 3px 0 var(--main-colorpurple);
+      color: var(--white);
+      text-decoration: none;
+      padding: 0.4rem 1rem;
+      margin: 0.4rem 0.6rem;
+    }
+  }
+
+  .m_navbar_search {
+    background-color: transparent;
+    color: var(--white);
+    font-size: 1.2rem;
+    padding: 0 1rem 0 0.7rem;
+    margin-block: 0.3rem;
+    border-right: 2px solid white;
+  }
+
+  .m_navbar_search_area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    input {
+      width: 30vw;
+      padding: 10px 16px;
+      background-color: var(--main-colorpurple);
+      border-radius: 8px;
+      margin-left: 1rem;
+      color: white;
+      transition: width 0.6s ease-in-out;
+
+      &::placeholder {
+        color: white;
+        opacity: 0.6;
+      }
+    }
+  }
+  .m_navbar_close {
+    input {
+      opacity: 0;
+      width: 0;
+      padding: 0;
     }
   }
 }
@@ -157,5 +233,14 @@
   }
   100% {
     transform: translateX(100vw); /* 往右位移100px */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+  .m_navbar {
+    display: flex;
   }
 }

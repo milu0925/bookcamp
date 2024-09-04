@@ -111,7 +111,12 @@ body {
   width: 90%;
   display: flex;
   margin: 1rem auto 5rem auto;
+}
 
+.l-user{
+  display: flex;
+  margin: 1rem auto 5rem auto;
+  
 }
 
 /* 商品加入購物車按鈕 */
@@ -158,6 +163,12 @@ body {
 }
 
 // 共用顏色外框
+
+.pixel-purple {
+  box-shadow: 3px 0 0 var(--main-colorpurple), -3px 0 0 var(--main-colorpurple), 0 -3px 0 var(--main-colorpurple), 0 3px 0 var(--main-colorpurple);
+}
+
+
 .pixel-border-yellow {
   box-shadow: 0 0 0 2px var(--main-yellow), 0 4px 0 #ffa81d, 4px 0 0 #ffa81d,
     0 -4px 0 var(--main-yellow), -4px 0 0 var(--main-yellow),
@@ -177,12 +188,26 @@ body {
     0 3px 0 var(--black);
 }
 
-
 .pixel-border-purple {
   box-shadow: 0 -3px 0 var(--main-brightpurple),
     -3px 0 0 var(--main-brightpurple), 0 3px 0 var(--main-colorpurple),
     3px 0 0 var(--main-colorpurple), 6px 0 0 var(--black), -6px 0 0 var(--black),
     0 6px 0 var(--black), 0 -6px 0 var(--black), 0 0 0 3px var(--black);
+    box-shadow: 0 -3px 0 var(--main-colorpurple), -3px 0 0 var(--main-colorpurple), 0 3px 0 var(--main-purple), 3px 0 0 var(--main-purple), 6px 0 0 var(--black), -6px 0 0 var(--black), 0 6px 0 var(--black), 0 -6px 0 var(--black), 0 0 0 3px var(--black);
+  
+  }
+
+.pixel-border-orange {
+  box-shadow:
+    0 -3px 0 var(--main-orange),
+    -3px 0 0 var(--main-orange),
+    0 3px 0 #ce5900,
+    3px 0 0 #ce5900,
+    6px 0 0 var(--black),
+    -6px 0 0 var(--black),
+    0 6px 0 var(--black),
+    0 -6px 0 var(--black),
+    0 0 0 3px var(--black);
 }
 
 // 底色
@@ -192,8 +217,14 @@ body {
 .bg-bright-purple {
   background-color: var(--main-brightpurple);
 }
+.bg-color-purple{
+  background-color: var(--main-colorpurple);
+}
 .bg-dark-purple {
   background-color: var(--main-darkpurple);
+}
+.bg-orange{
+  background-color: var(--main-orange);
 }
 .bg-yellow {
   background-color: var(--main-yellow);

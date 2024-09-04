@@ -22,9 +22,9 @@ export default function Home() {
   };
 
   return (
-    <MainLayout>
+    <>
       <Advertise />
       <HotList data={hotList} />
-    </MainLayout>
+    </>
   );
 }
