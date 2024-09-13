@@ -5,16 +5,18 @@ import CartData from "./cart-function-data";
 import CartTotal from "./cart-function-total";
 import CartButton from "./cart-button";
 import Swal from "sweetalert2";
-import { checkout_linepay, checkout_bluepay } from "@/hooks/call-api";
+import { checkout, checkout_linepay } from "@/hooks/call-api";
 import { useAuth } from "@/hooks/auth-context";
+import { useRouter } from "next/router";
 export default function CartFunction({ order, setOrder }) {
   const { setAuth } = useAuth();
-    // 轉譯JWT
-    const parseJwt = (token) => {
-      const base64Payload = token.split(".")[1];
-      const payload = Buffer.from(base64Payload, "base64");
-      return JSON.parse(payload.toString());
-    };
+  const router = useRouter();
+  // 轉譯JWT
+  const parseJwt = (token) => {
+    const base64Payload = token.split(".")[1];
+    const payload = Buffer.from(base64Payload, "base64");
+    return JSON.parse(payload.toString());
+  };
   // 前往付款
   const handlePay = async () => {
     if (!(await checkError(order))) {
@@ -28,13 +30,22 @@ export default function CartFunction({ order, setOrder }) {
           isAuth: true,
           user: parseJwt(req.data.token),
         });
-        setTimeout(()=>{
+        setTimeout(() => {
           window.location.href = req.data.web;
-        },1000)
+        }, 1000);
       }
     } else if (order.pay == 2) {
-      const req = await checkout_bluepay(order);
+      
+      const req = await checkout(order);
       if (req?.message === "success") {
+        setAuth({
+          isAuth: true,
+          user: parseJwt(req.data.token),
+        });
+        setTimeout(() => {
+          router.push(`/cart/finish?code=${req.data.code}`)
+        }, 1000);
+        
       }
     }
   };

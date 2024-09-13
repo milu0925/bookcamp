@@ -44,7 +44,7 @@ export default function CartFinishTotal({ user }) {
         <FaRegCheckCircle />
         付款方式
         <span className="bg-dark-purple">
-          {user.order ? (user.order.pay == 1 ? "linepay" : "信用卡") : "未付款"}
+          {user.order ? (user.order.pay == 1 ? "linepay" : "貨到付款") : "未付款"}
         </span>
       </div>
       <div className={style.col_cart_total}>

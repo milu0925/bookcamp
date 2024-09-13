@@ -24,7 +24,17 @@ export const pushInUserCartItems = async (datas) => {
     console.log(error);
   }
 };
-
+// 送出訂單-一般結帳
+export const checkout = async (datas) => {
+  try {
+    const { data } = await axios.post(`${domain}/order/checkout`, datas, {
+      withCredentials: true,
+    });
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 // 送出訂單-linepay結帳
 export const checkout_linepay = async (datas) => {
   try {

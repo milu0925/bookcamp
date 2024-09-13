@@ -54,8 +54,8 @@ export default function CartData({ setOrder }) {
             className={chosen === 2 ? style.chosen : ""}
             onClick={() => setChosen(2)}
           >
-            <img alt="card" src="/images/creditcard.png" />
-            <label>信用卡</label>
+            <img alt="homepay" src="/images/homepay.png" />
+            <label>貨到付款</label>
           </div>
         </div>
       </div>
