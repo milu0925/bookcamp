@@ -1,44 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./cart.module.scss";
 import { FaRegCheckCircle } from "react-icons/fa";
-export default function CartFinishTotal() {
+import { useAuth } from "@/hooks/auth-context";
+export default function CartFinishTotal({ user }) {
+  const { auth } = useAuth();
+
+  // 計算小計
+  const [subtotal, setSubtotal] = useState(0);
+  useEffect(() => {
+    if (user.detail) {
+      const newtotal = user.detail.reduce((acc, item) => {
+        return acc + item.b_price * item.b_count;
+      }, 0);
+      setSubtotal(newtotal);
+    }
+  }, [user]);
+
   return (
     <div className={`${style.r_cart_total} pixel-border-purple bg-purple`}>
       <div className={style.col_cart_user}>
         <div>
           <span>購買人</span>
-          <span>筠筠</span>
+          <span>{auth.isAuth ? auth.user.name : ""}</span>
         </div>
         <div>
           <span>電話</span>
-          <span>098252315</span>
+          <span>{auth.isAuth ? auth.user.phone : ""}</span>
         </div>
         <div>
           <span>地址</span>
-          <span>高雄市鳳山區峰城路123號</span>
+          <span>{auth.isAuth ? auth.user?.address : ""}</span>
         </div>
       </div>
       <div className={style.col_cart_total_finish}>
         <FaRegCheckCircle />
-        商品共<span className="bg-dark-purple">5</span>項
+        商品共
+        <span className="bg-dark-purple">
+          {user.detail ? user.detail.length : 0}
+        </span>
+        項
       </div>
       <div className={style.col_cart_total_finish}>
         <FaRegCheckCircle />
-        付款方式<span className="bg-dark-purple">linepay</span>
+        付款方式
+        <span className="bg-dark-purple">
+          {user.order ? (user.order.pay == 1 ? "linepay" : "信用卡") : "未付款"}
+        </span>
       </div>
       <div className={style.col_cart_total}>
         <div>
           <span>商品小計</span>
-          <span>800</span>
+          <span>{user ? subtotal : 0}</span>
+        </div>
+        <div>
+          <span>運費</span>
+          <span>{user.order ? user.order.fee : 0}</span>
         </div>
         <div>
           <span>點數折抵</span>
-          <span>0</span>
+          <span>{user.order ? user.order.point : 0}</span>
         </div>
         <hr />
         <div>
           <span>總計</span>
-          <span>$7730</span>
+          <span>{user.order ? user.order.total : 0}</span>
         </div>
       </div>
     </div>

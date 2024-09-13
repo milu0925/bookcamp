@@ -46,6 +46,7 @@
       cursor: pointer;
       border-width: 0 0 1px 0;
       border-style: dashed;
+
       &:hover {
         border: none;
         font-weight: bold;
@@ -54,9 +55,17 @@
         background-color: var(--main-yellow);
         box-shadow: 3px 0 0 var(--main-orange), -3px 0 0 var(--main-yellow),
           0 -3px 0 var(--main-yellow), 0 3px 0 var(--main-orange);
+        a {
+          color: var(--black);
+        }
       }
       &:last-child {
         border: none;
+      }
+      a {
+        color: var(--white);
+        display: flex;
+        justify-content: center;
       }
     }
   }
@@ -111,10 +120,13 @@
     .r_book {
       width: 125px;
       padding: 0 0.8rem 0.5rem 0.8rem;
-      .r_book_title{
+      .r_book_title {
         font-family: "zpix";
         font-size: 18px;
         height: 30px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       img {
         position: relative;

@@ -152,7 +152,7 @@ export default function UserRegister() {
           icon: "success",
           title: "註冊成功，即將導向登入頁面。",
         }).then(() => {
-          router.push("/");
+          router.push("/user/login");
         });
       }
     } catch (error) {

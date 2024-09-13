@@ -1,39 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth } from "/hooks/auth-context";
 import Link from "next/link";
 import style from "./header.module.scss";
 import { FaCartShopping } from "react-icons/fa6";
-import axios from "axios";
-import { useRouter } from "next/router";
+import { useCart } from "@/hooks/cart-context";
 
 export default function Header() {
-  const domain = process.env.NEXT_PUBLIC_DOMAIN;
-  const router = useRouter();
-  const { auth, setAuth } = useAuth();
-  // 登出
-  const handleLogout = async () => {
-    const { data } = await axios.post(
-      `${domain}/user/logout`,
-      {},
-      {
-        withCredentials: true,
-      }
-    );
-    if (data.message === "success") {
-      setAuth({
-        isAuth: false,
-        user: {
-          id: 0,
-          name: "",
-          email: "",
-          avatar: "",
-          birthday: "",
-          phone: "",
-        },
-      });
-    }
-    router.push("/");
-  };
+  const { auth, handleLogout } = useAuth();
+  const { cart } = useCart();
+
   // 登入按鈕滑入顯示
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = () => {
@@ -42,6 +17,23 @@ export default function Header() {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
+  
+  // 購物車的數量顯示
+  const [count, setCount] = useState(0);
+  const renderCount = () => {
+    if (auth.isAuth) {
+      setCount(cart?.length);
+      
+    } else {
+      const data = sessionStorage.getItem("cart");
+      const countdata = JSON.parse(data);     
+      countdata?.length > 0 ? setCount(countdata.length) : setCount(0);
+    }
+  };
+  useEffect(() => {
+    renderCount();
+  }, [auth, cart]);
+
 
   return (
     <>
@@ -56,7 +48,7 @@ export default function Header() {
               className={`${style.header_btn_cart} pixel-border-white bg-white`}
             >
               <FaCartShopping />
-              <span className={style.header_btn_cart_count}>99</span>
+              <span className={style.header_btn_cart_count}>{count}</span>
             </Link>
           </div>
           <div className={style.member}>

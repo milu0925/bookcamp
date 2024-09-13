@@ -187,7 +187,8 @@
 
   .slide_list_link {
     padding: 0.5rem;
-    a {
+    a,button {
+      cursor: pointer;
       background-color: var(--main-darkpurple);
       border: 3px solid var(--main-yellow);
       border-radius: 50px;

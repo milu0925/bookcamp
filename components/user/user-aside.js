@@ -1,54 +1,78 @@
-import React from "react";
+import React, { useState } from "react";
 import style from "./user.module.scss";
 import { useAuth } from "@/hooks/auth-context";
 import Link from "next/link";
+import { FaCaretDown } from "react-icons/fa";
 export default function UserAside() {
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
-  const { setAuth, auth } = useAuth();
-  console.log(auth);
+  const { auth, handleLogout } = useAuth();
+  // 開關
+  const [isOpen, setIsOpen] = useState({ id: null, status: false });
+  const handleToggle = (id) => {
+    if (isOpen.id === id) {
+      setIsOpen({ id, status: !isOpen.status });
+    } else {
+      setIsOpen({ id, status: true });
+    }
+  };
 
   return (
     <div className={style.col_user_aside}>
       <div className={style.user_aside_title}>
         <div>
-          <img alt="default" src={`${domain}/images/egg.jpg`} />
-          <span>{auth.user.name},歡迎回到會員中心!</span>
+          <div className={style.user_name_and_icon}>
+            <img alt="default" src={`${domain}${auth.user.avatar}`} />
+            <span>{auth.user.name}</span>
+          </div>
+          <div className={style.user_welcome_word}>歡迎回到會員中心!</div>
         </div>
       </div>
       <div className={style.user_aside_content}>
-        <button className={`${style.collapse_btn} pixel-purple bg-purple`}>
+        <button
+          className={`${style.collapse_btn} ${
+            isOpen.id === 1 && isOpen.status && style.active
+          }`}
+          onClick={() => handleToggle(1)}
+        >
           會員資訊
-          <i className="fa-solid fa-caret-down"></i>
+          <FaCaretDown />
         </button>
         <div
-          className="collapse w-100"
-          id="collapse"
-          data-bs-parent="#accordion"
+          className={`${
+            isOpen.id === 1 && isOpen.status
+              ? style.collapse_btn_child
+              : style.collapse_btn_child_close
+          }`}
         >
-          <div className="card card-body member-details">
-            <ul>
-              <li>
-                <Link href="/member/update">修改資料</Link>
-              </li>
-              <li>
-                <Link href="/member/reset-password">修改密碼</Link>
-              </li>
-              <li>
-                <Link href="/member/mycollect">我的收藏</Link>
-              </li>
-            </ul>
-          </div>
+          <ul>
+            <li>
+              <Link href="/member/update">修改資料</Link>
+            </li>
+            <li>
+              <Link href="/member/reset-password">修改密碼</Link>
+            </li>
+            <li>
+              <Link href="/member/mycollect">我的收藏</Link>
+            </li>
+          </ul>
         </div>
-        <button className={`${style.collapse_btn} pixel-purple bg-purple`}>
+        <button
+          className={`${style.collapse_btn} ${
+            isOpen.id === 2 && isOpen.status && style.active
+          }`}
+          onClick={() => handleToggle(2)}
+        >
           消費紀錄
-          <i className="fa-solid fa-caret-down"></i>
+          <FaCaretDown />
         </button>
         <div
-          className="collapse w-100"
-          id="collapse1"
-          data-bs-parent="#accordion"
+          className={`${
+            isOpen.id === 2 && isOpen.status
+              ? style.collapse_btn_child
+              : style.collapse_btn_child_close
+          }`}
         >
-          <div className="card card-body member-details">
+          <div>
             <ul>
               <li>
                 <Link href="/member/order">訂單紀錄</Link>
@@ -59,16 +83,23 @@ export default function UserAside() {
             </ul>
           </div>
         </div>
-        <button className={`${style.collapse_btn} pixel-purple bg-purple`}>
+        <button
+          className={`${style.collapse_btn} ${
+            isOpen.id === 3 && isOpen.status && style.active
+          }`}
+          onClick={() => handleToggle(3)}
+        >
           文章資訊
-          <i className="fa-solid fa-caret-down"></i>
+          <FaCaretDown />
         </button>
         <div
-          className="collapse w-100"
-          id="collapse4"
-          data-bs-parent="#accordion"
+          className={`${
+            isOpen.id === 3 && isOpen.status
+              ? style.collapse_btn_child
+              : style.collapse_btn_child_close
+          }`}
         >
-          <div className="card card-body member-details">
+          <div>
             <ul>
               <li>
                 <Link href="/member/forum/forum-user-post">我的文章</Link>
@@ -79,6 +110,14 @@ export default function UserAside() {
             </ul>
           </div>
         </div>
+      </div>
+      <div className={style.user_aside_footer}>
+        <button
+          className="pixel-border-yellow bg-yellow"
+          onClick={handleLogout}
+        >
+          登出
+        </button>
       </div>
     </div>
   );

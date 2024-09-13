@@ -26,8 +26,8 @@ export default function SortBook() {
       <div className={style.r_sort_book_content}>
         <ul>
           {bookdata.map((v, i) => (
-            <li className={style.r_sort_book_btn} key={i} data-id={v.id}>
-              <Link href="">{v.name}</Link>
+            <li className={style.r_sort_book_btn} key={v.id} data-id={v.id}>
+              <Link href={`/book?b_genre=${v.name}`}>{v.name}</Link>
             </li>
           ))}
         </ul>

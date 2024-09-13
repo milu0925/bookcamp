@@ -1,51 +1,33 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import style from "./cart.module.scss";
 import { TbHttpDelete } from "react-icons/tb";
 import { IoMdAdd } from "react-icons/io";
 import { MdHorizontalRule } from "react-icons/md";
 import { MdAttachMoney } from "react-icons/md";
-import { FaCaretUp,FaCaretDown } from "react-icons/fa";
-export default function CartItem() {
-  const book = [
-    {
-      id: 1,
-      title: "臺灣的勝算",
-      img: "/images/book/lover.png",
-      type: "台灣歷史",
-      count: 5,
-      price: 700,
-    },
-    {
-      id: 2,
-      title: "天才的人間力",
-      img: "/images/book/lover.png",
-      type: "人文生活",
-      count: 2,
-      price: 500,
-    },
-    {
-      id: 3,
-      title: "魔杖之外",
-      img: "/images/book/lover.png",
-      type: "自然科學",
-      count: 1,
-      price: 200,
-    },
-    {
-      id: 4,
-      title: "魔杖之外",
-      img: "/images/book/lover.png",
-      type: "自然科學",
-      count: 1,
-      price: 200,
-    },
-  ];
+import { FaCaretUp, FaCaretDown } from "react-icons/fa";
+import { useCart } from "@/hooks/cart-context";
+export default function CartItem({ setOrder }) {
+  const { cart, handleAdjustCount } = useCart();
   const [closeContent, setCloseContent] = useState(true);
+
+  // 添加購買的書籍
+  const handleCheckbox = (e, item) => {
+    if (e.target.checked) {
+      setOrder((prev) => ({ ...prev, books: [...prev.books, item] }));
+    } else {
+      setOrder((prev) => ({
+        ...prev,
+        books: [...prev.books.filter((v) => v.c_id !== item.c_id)],
+      }));
+    }
+  };
 
   return (
     <div className={style.col_cart_item}>
       <button
-        onClick={() => setCloseContent(!closeContent)}
+        onClick={() => {
+          setCloseContent(!closeContent);
+        }}
         className={style.cart_item_header}
       >
         {closeContent ? <FaCaretUp /> : <FaCaretDown />}
@@ -57,29 +39,58 @@ export default function CartItem() {
           closeContent ? style.open : style.close
         }`}
       >
-        {book.map((v) => (
-          <div className={`${style.cart_item_content_book} `} key={v.id}>
-            <input type="checkbox" />
-            <img src={v.img} />
+        {cart.map((v) => (
+          <div
+            className={`${style.cart_item_content_book} `}
+            key={v.c_id}
+            value={v.c_id}
+          >
+            <input
+              type="checkbox"
+              onChange={(e) => {
+                handleCheckbox(e, v);
+              }}
+            />
+            <img src={`/images/book/${v.b_img}`} />
             <div className={style.cart_item_title}>
-              <div>{v.title}</div>
-              <div>{v.type}</div>
+              <div>{v.b_title}</div>
+              <div>{v.b_genre}</div>
             </div>
             <div className={style.cart_item_price}>
               <MdAttachMoney />
-              {v.price}
+              {v.b_price}
             </div>
 
             <div className={style.cart_item_quantity}>
-              <button className="pixel-border-add">
+              <button
+                className="pixel-border-add"
+                onClick={() => {
+                  handleAdjustCount(v, "sub");
+                }}
+              >
                 <MdHorizontalRule />
               </button>
-              <input type="number" className="input-box-all" readOnly />
-              <button className="pixel-border-add">
+              <input
+                type="number"
+                value={v.c_count}
+                className="input-box-all"
+                readOnly
+              />
+              <button
+                className="pixel-border-add"
+                onClick={() => {
+                  handleAdjustCount(v, "add");
+                }}
+              >
                 <IoMdAdd />
               </button>
             </div>
-            <button className={style.cart_item_delete}>
+            <button
+              className={style.cart_item_delete}
+              onClick={() => {
+                handleAdjustCount(v, "del");
+              }}
+            >
               <TbHttpDelete />
             </button>
           </div>

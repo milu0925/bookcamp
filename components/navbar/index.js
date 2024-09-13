@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import style from "./navbar.module.scss";
 import { FaSearch } from "react-icons/fa";
+import { readGenreBook } from "@/hooks/call-api";
+
 export default function Navbar() {
+ 
   //開啟下拉選單
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = (linkName) => {
@@ -12,7 +15,7 @@ export default function Navbar() {
     setIsHovered(false);
   };
   const [searchValue, setSearchValue] = useState(""); //大搜尋
-  const [rwdOpenSearch,setrwdOpenSearch] =useState(false);
+  const [rwdOpenSearch, setrwdOpenSearch] = useState(false);
   //監聽事件 按下Enter 可以搜尋
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && searchValue.trim()) {
@@ -20,7 +23,7 @@ export default function Navbar() {
       router.push(`/newbook?query=${encodeURIComponent(searchValue)}`);
     }
   };
-
+  // 分類
   const bookdata = [
     { id: 1, name: "藝術設計" },
     { id: 2, name: "人文社科" },
@@ -74,8 +77,8 @@ export default function Navbar() {
         >
           <div className={style.slide_list_btn}>
             {bookdata.map((v) => (
-              <div className={style.slide_list_link}>
-                <Link href={`/book?genre_id=/${v.id}`}>{v.name}</Link>
+              <div key={v.id} className={style.slide_list_link}>
+                <Link href={`/book?b_genre=${v.name}`}>{v.b_genre}{v.name}</Link>
               </div>
             ))}
           </div>
@@ -83,10 +86,18 @@ export default function Navbar() {
       </div>
       {/* 手機板 */}
       <div className={style.m_navbar}>
-        <button className={style.m_navbar_search} type="button" onClick={()=>setrwdOpenSearch(!rwdOpenSearch)}>
-         <FaSearch />
+        <button
+          className={style.m_navbar_search}
+          type="button"
+          onClick={() => setrwdOpenSearch(!rwdOpenSearch)}
+        >
+          <FaSearch />
         </button>
-        <div className={`${style.m_navbar_search_area} ${rwdOpenSearch ? "":style.m_navbar_close }`}>
+        <div
+          className={`${style.m_navbar_search_area} ${
+            rwdOpenSearch ? "" : style.m_navbar_close
+          }`}
+        >
           <div>
             <input
               placeholder="找啥書?"

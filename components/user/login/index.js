@@ -12,19 +12,13 @@ import { useRouter } from "next/router";
 import { useAuth } from "@/hooks/auth-context";
 export default function UserLogin() {
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
-  const [error,setError] = useState(false)
+  const [error, setError] = useState(false);
   const router = useRouter();
-  const { setAuth } = useAuth();
+  const { setAuth,handleLogin } = useAuth();
   const [user, setUser] = useState({ email: "", password: "" });
   const handleUserData = (e) => {
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const parseJwt = (token) => {
-    const base64Payload = token.split('.')[1];
-    const payload = Buffer.from(base64Payload, 'base64');
-    return JSON.parse(payload.toString());
   };
 
   // 快速登入
@@ -59,40 +53,6 @@ export default function UserLogin() {
       return false;
     }
     return true;
-  };
-  // 登入
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    if (!(await checkForm())) {
-      return;
-    }
-    try {
-      const { data } = await axios.post(`${domain}/user/login`, user, {
-        withCredentials: true, 
-      });
-
-      if (data.message === "success") {
-        setAuth({
-          isAuth: true,
-          user: parseJwt(data.token),
-        });
-
-
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "登入成功，即將導向至首頁。",
-        }).then(() => {
-          router.push("/");
-        });
-      }
-    } catch (error) {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: error,
-      });
-    }
   };
   return (
     <div className={style.l_login}>
@@ -136,7 +96,7 @@ export default function UserLogin() {
         <div className={style.r_login_btn_group}>
           <button
             className="pixel-border-purple bg-color-purple"
-            onClick={handleLogin}
+            onClick={()=>{handleLogin(checkForm, user)}}
           >
             登入
           </button>

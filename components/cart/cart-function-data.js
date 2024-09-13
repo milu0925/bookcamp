@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./cart.module.scss";
 import { FaCircleInfo } from "react-icons/fa6";
 import { FaCommentDollar } from "react-icons/fa6";
-export default function CartData() {
-  const [chosen,setChosen] = useState(0);
+import { useAuth } from "@/hooks/auth-context";
+export default function CartData({ setOrder }) {
+  const [chosen, setChosen] = useState(0);
+  const { auth } = useAuth();
+  useEffect(() => {
+    if (chosen !== 0) {
+      setOrder((prev) => ({ ...prev, pay: chosen }));
+    }
+  }, [chosen]);
+
   return (
     <div className={`${style.r_cart_data} pixel-border-black bg-white`}>
       <div>
@@ -14,15 +22,15 @@ export default function CartData() {
         <div className={style.cart_data_user}>
           <div>
             <span>購買人</span>
-            <span>筠筠</span>
+            <span>{auth ? auth.user.name : ""}</span>
           </div>
           <div>
             <span>電話</span>
-            <span>098252315</span>
+            <span>{auth ? auth.user.phone : ""}</span>
           </div>
           <div>
             <span>地址</span>
-            <span>高雄市鳳山區峰城路123號</span>
+            <span>{auth ? auth.user.address : ""}</span>
           </div>
         </div>
       </div>
@@ -33,13 +41,21 @@ export default function CartData() {
           <span>付款方式</span>
         </div>
         <div className={style.cart_data_pay}>
-          <div type="button" className={chosen === 1 ? style.chosen : ''} onClick={()=>setChosen(1)}>
+          <div
+            type="button"
+            className={chosen === 1 ? style.chosen : ""}
+            onClick={() => setChosen(1)}
+          >
             <img alt="linepay" src="/images/linepay.png" />
-            <label >LinePay</label>
+            <label>LinePay</label>
           </div>
-          <div type="button" className={chosen === 2 ? style.chosen : ''} onClick={()=>setChosen(2)}>
+          <div
+            type="button"
+            className={chosen === 2 ? style.chosen : ""}
+            onClick={() => setChosen(2)}
+          >
             <img alt="card" src="/images/creditcard.png" />
-            <label >信用卡</label>
+            <label>信用卡</label>
           </div>
         </div>
       </div>

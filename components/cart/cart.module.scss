@@ -206,14 +206,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        input[type="number"] {
-          width: 50%;
-          height: 30px;
-          text-align: center;
-          color: var(--white);
-          border-radius: 5px;
-          background: var(--main-darkpurple);
-        }
         button {
           position: relative;
           z-index: 3;
@@ -222,7 +214,7 @@
             right: -5px;
           }
           &:last-child {
-            left: -5px;
+            left: -20px;
           }
           &:active {
             transform: scale(0.92);

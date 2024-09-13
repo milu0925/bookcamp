@@ -4,8 +4,20 @@ import style from "./cart.module.scss";
 import { FaSearchDollar } from "react-icons/fa";
 import { FaCircleQuestion } from "react-icons/fa6";
 import { FiDelete } from "react-icons/fi";
-export default function CartPoint() {
+import { useAuth } from "@/hooks/auth-context";
+export default function CartPoint({ setOrder }) {
   const [useILL, setUseILL] = useState(false);
+  const { auth } = useAuth();
+
+  
+  // 是否折抵
+  const handleOption = (e) => {
+    if (e.target.id === "all") {
+      setOrder((prev) => ({ ...prev, discount: auth ? auth?.user.point : 0 }));
+    } else {
+      setOrder((prev) => ({ ...prev, discount: 0 }));
+    }
+  };
   return (
     <div className={`${style.r_cart_point} pixel-border-yellow bg-yellow`}>
       <div className={style.cart_point_title}>
@@ -16,19 +28,19 @@ export default function CartPoint() {
 
       <div className={style.cart_point_view}>
         <span>您的點數為</span>
-        <label>20</label>
+        <label>{auth.isAuth ? auth.user.point : 0}</label>
         <span>點，請選擇你需要使用的點數。</span>
       </div>
 
       <div className={`${style.cart_point_view_use} input-radio-div`}>
         <div>
-          <input type="radio" id="all" name="point" />
+          <input type="radio" id="all" name="point" onChange={handleOption} />
           <label className="input-radio-label" htmlFor="all">
             全部折抵
           </label>
         </div>
         <div>
-          <input type="radio" id="none" name="point" />
+          <input type="radio" id="none" name="point" onChange={handleOption} />
           <label className="input-radio-label" htmlFor="none">
             不折抵
           </label>

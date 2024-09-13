@@ -163,6 +163,13 @@ body {
 }
 
 // 共用顏色外框
+.pixel-d-purple{
+  box-shadow:
+    3px 0 0 var(--main-darkpurple),
+    -3px 0 0 var(--main-darkpurple),
+    0 -3px 0 var(--main-darkpurple),
+    0 3px 0 var(--main-darkpurple);
+}
 
 .pixel-purple {
   box-shadow: 3px 0 0 var(--main-colorpurple), -3px 0 0 var(--main-colorpurple), 0 -3px 0 var(--main-colorpurple), 0 3px 0 var(--main-colorpurple);
