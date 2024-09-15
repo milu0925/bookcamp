@@ -1,7 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useCart } from "./cart-context";
+import { get_user } from "@/hooks/call-api";
 import { pushInUserCartItems } from "@/hooks/call-api";
 import Swal from "sweetalert2";
 export const CreateAuth = createContext(null);
@@ -9,6 +9,8 @@ export const CreateAuth = createContext(null);
 export const AuthContext = ({ children }) => {
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
   const router = useRouter();
+
+  // 會員資訊
   const [auth, setAuth] = useState({
     isAuth: false,
     user: {
@@ -20,6 +22,11 @@ export const AuthContext = ({ children }) => {
       phone: "",
     },
   });
+  // 會員點數
+  const [point, setPoint] = useState(0);
+  // 會員圖片
+  const [img,setImg] = useState("");
+
   // 隱私頁面路由，未登入時會，檢查後跳轉至登入頁
   const protectedRoutes = ["/user"];
   // 檢驗會員身分
@@ -32,6 +39,7 @@ export const AuthContext = ({ children }) => {
       if (data.message === "success") {
         // 驗證成功，把資料寫入
         setAuth({ isAuth: true, user: data.user });
+        setPoint(data.point);
       }
     } catch (error) {
       if (
@@ -135,19 +143,29 @@ export const AuthContext = ({ children }) => {
       console.log(error);
     }
   };
-
   // didMount(初次渲染)後，向伺服器要求檢查會員是否登入中
   useEffect(() => {
     checkAuth();
   }, [router.isReady, router.pathname]);
+  // 重新取得會員資料
+  const handleUserData = async () => {
+    const { data } = await get_user();
+    setPoint(data[0].point);
+    
+    setImg(data[0].u_img);
+  };
 
   return (
     <CreateAuth.Provider
       value={{
+        img,
+        point,
+        setPoint,
         auth,
         setAuth,
         handleLogin,
         handleLogout,
+        handleUserData,
       }}
     >
       {children}

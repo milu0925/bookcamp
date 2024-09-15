@@ -47,7 +47,6 @@ export default function Cart() {
   };
   useEffect(() => {
     calculateTotal(order.books, order.discount, order.fee);
-    // calculateBook();
   }, [order.books, order.discount, order.fee]);
   // 購物車內容+ - 打勾 沒打勾的動作
   const calculateBook = () => {

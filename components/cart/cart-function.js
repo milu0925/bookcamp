@@ -11,12 +11,7 @@ import { useRouter } from "next/router";
 export default function CartFunction({ order, setOrder }) {
   const { setAuth } = useAuth();
   const router = useRouter();
-  // 轉譯JWT
-  const parseJwt = (token) => {
-    const base64Payload = token.split(".")[1];
-    const payload = Buffer.from(base64Payload, "base64");
-    return JSON.parse(payload.toString());
-  };
+
   // 前往付款
   const handlePay = async () => {
     if (!(await checkError(order))) {
@@ -26,10 +21,6 @@ export default function CartFunction({ order, setOrder }) {
     if (order.pay == 1) {
       const req = await checkout_linepay(order);
       if (req?.message === "success") {
-        setAuth({
-          isAuth: true,
-          user: parseJwt(req.data.token),
-        });
         setTimeout(() => {
           window.location.href = req.data.web;
         }, 1000);

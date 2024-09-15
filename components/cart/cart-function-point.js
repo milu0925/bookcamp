@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./cart.module.scss";
 
 import { FaSearchDollar } from "react-icons/fa";
@@ -7,17 +7,20 @@ import { FiDelete } from "react-icons/fi";
 import { useAuth } from "@/hooks/auth-context";
 export default function CartPoint({ setOrder }) {
   const [useILL, setUseILL] = useState(false);
-  const { auth } = useAuth();
+  const { auth, point, handleUserData } = useAuth();
 
-  
   // 是否折抵
   const handleOption = (e) => {
     if (e.target.id === "all") {
-      setOrder((prev) => ({ ...prev, discount: auth ? auth?.user.point : 0 }));
+      setOrder((prev) => ({ ...prev, discount: auth.isAuth ? point : 0 }));
     } else {
       setOrder((prev) => ({ ...prev, discount: 0 }));
     }
   };
+  useEffect(()=>{
+    handleUserData()
+  },[])
+
   return (
     <div className={`${style.r_cart_point} pixel-border-yellow bg-yellow`}>
       <div className={style.cart_point_title}>
@@ -28,7 +31,7 @@ export default function CartPoint({ setOrder }) {
 
       <div className={style.cart_point_view}>
         <span>您的點數為</span>
-        <label>{auth.isAuth ? auth.user.point : 0}</label>
+        <label>{auth.isAuth ? point : 0}</label>
         <span>點，請選擇你需要使用的點數。</span>
       </div>
 

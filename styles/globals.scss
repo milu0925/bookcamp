@@ -115,8 +115,11 @@ body {
 
 .l-user{
   display: flex;
+  gap: 25px;
   margin: 1rem auto 5rem auto;
-  
+  div:last-child{
+    margin-top: auto;
+  }
 }
 
 /* 商品加入購物車按鈕 */

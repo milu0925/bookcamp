@@ -53,8 +53,8 @@ export default function Navbar() {
             <Link onMouseEnter={() => handleMouseEnter("book")} href="/book">
               實體書籍
             </Link>
-            <Link href="/help">客服幫助</Link>
             <Link href="/forum">討論交流</Link>
+            <Link href="/milu">關於作者</Link>
           </div>
           <div className={style.navbar_search}>
             <input

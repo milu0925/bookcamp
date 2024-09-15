@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FaCaretDown } from "react-icons/fa";
 export default function UserAside() {
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
-  const { auth, handleLogout } = useAuth();
+  const { auth, handleLogout, img } = useAuth();
   // 開關
   const [isOpen, setIsOpen] = useState({ id: null, status: false });
   const handleToggle = (id) => {
@@ -21,7 +21,7 @@ export default function UserAside() {
       <div className={style.user_aside_title}>
         <div>
           <div className={style.user_name_and_icon}>
-            <img alt="default" src={`${domain}${auth.user.avatar}`} />
+            <img alt="user-avatar" src={`${domain}${img ? img : ""}`} />
             <span>{auth.user.name}</span>
           </div>
           <div className={style.user_welcome_word}>歡迎回到會員中心!</div>
