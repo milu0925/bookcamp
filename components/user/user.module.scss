@@ -1,3 +1,25 @@
+.user_title_block {
+  background-color: var(--main-purple);
+  color: white;
+  width: 100%;
+  div:first-child {
+    font-size: 24px;
+    font-family: "zpix";
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 1rem 2rem;
+  }
+  div:last-child {
+    font-size: 12px;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 1rem 1rem;
+  }
+}
+
 .col_user_aside {
   display: flex;
   flex-direction: column;
@@ -163,7 +185,6 @@
         overflow: hidden;
         img {
           width: 110%;
-          height: 100%;
           background-color: var(--white);
           position: relative;
           cursor: pointer;
@@ -287,38 +308,18 @@
 }
 .col_user_daily {
   max-width: 650px;
-  width: 100%;
   height: auto;
-  color: white;
   .user_daily_title {
     width: 100%;
-    background-color: var(--main-purple);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    div:first-child {
-      font-size: 24px;
-      font-family: "zpix";
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 1rem 2rem;
-    }
-    div:last-child {
-      font-size: 12px;
-      font-weight: bolder;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 1rem 1rem;
-    }
   }
   .user_daily_content {
     position: relative;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    // height: 100%;
     padding: 1.5rem 1rem;
     margin: 1rem;
     border-radius: 10px;
@@ -450,7 +451,144 @@
     }
   }
 }
+.col_user_edit_information {
+  max-width: 1000px;
+  width: 100%;
+  height: auto;
+  .user_edit_information_title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--main-colorpurple);
+  }
+  .user_edit_information_content {
+    background-color: var(--main-purple);
+    box-shadow: 0 -3px var(--main-brightpurple);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    color: var(--white);
+    padding: 30px;
+    > div {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 12px;
+    }
+    input {
+      width: 100%;
+      background: linear-gradient(
+            135deg,
+            transparent 5px,
+            var(--main-darkpurple) 0
+          )
+          top left,
+        linear-gradient(-135deg, transparent 5px, var(--main-darkpurple) 0) top
+          right,
+        linear-gradient(-45deg, transparent 5px, var(--main-darkpurple) 0)
+          bottom right,
+        linear-gradient(45deg, transparent 5px, var(--main-darkpurple) 0) bottom
+          left;
+      background-size: 75% 75%;
+      background-repeat: no-repeat;
+      border: 0;
+      padding: 0.75rem 1rem;
+      color: white;
+      &:focus,
+      &:focus-visible,
+      &:disabled {
+        background-color: transparent;
+        color: white;
+        border: 0;
+        outline: none;
+      }
 
+    }
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none; /* 用於 Chrome, Safari, Edge */
+      -moz-appearance: textfield; /* 用於 Firefox */
+      appearance: none; /* 通用 */
+      margin: 0;
+    }
+    .user_edit_gender {
+      > div {
+        display: flex;
+        gap: 10px;
+        input {
+          display: none;
+          &:checked + .active {
+            background: var(--main-darkpurple);
+          }
+        }
+        label {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          border: 2px solid var(--main-brightpurple);
+          border-radius: 5px;
+          cursor: pointer;
+          transition: transform 300ms ease;
+
+          svg {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+    .user_edit_btn{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 3rem;
+      padding:50px 0 0 0;
+      a,button{
+        color: var(--black);
+        font-size: 18px;
+        font-weight: bolder;
+        padding: 8px 16px;
+        cursor: pointer;
+      }
+      a:hover{
+        transform: scale(1.02);
+        background-color: var(--grey);
+        box-shadow:
+        0 -3px 0 var(--grey),
+        -3px 0 0 var(--grey),
+        0 3px 0 rgb(114, 114, 114),
+        3px 0 0 rgb(114, 114, 114),
+        6px 0 0 var(--black),
+        -6px 0 0 var(--black),
+        0 6px 0 var(--black),
+        0 -6px 0 var(--black),
+        0 0 0 3px var(--black);
+      }
+      button:hover{
+        transform: scale(1.02);
+        background-color: var(--main-orange);
+        box-shadow:
+        0 -3px 0 var(--main-orange),
+        -3px 0 0 var(--main-orange),
+        0 3px 0 #ce5900,
+        3px 0 0 #ce5900,
+        6px 0 0 var(--black),
+        -6px 0 0 var(--black),
+        0 6px 0 var(--black),
+        0 -6px 0 var(--black),
+        0 0 0 3px var(--black);
+      }
+    }
+  }
+}
 @keyframes moveUpDown {
   0%,
   100% {

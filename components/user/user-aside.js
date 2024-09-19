@@ -46,13 +46,10 @@ export default function UserAside() {
         >
           <ul>
             <li>
-              <Link href="/member/update">修改資料</Link>
+              <Link href="/user/update">修改資料</Link>
             </li>
             <li>
-              <Link href="/member/reset-password">修改密碼</Link>
-            </li>
-            <li>
-              <Link href="/member/mycollect">我的收藏</Link>
+              <Link href="/user/reset-password">修改密碼</Link>
             </li>
           </ul>
         </div>

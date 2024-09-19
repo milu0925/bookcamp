@@ -44,7 +44,7 @@ export default function UserDaily() {
     <div
       className={`${style.col_user_daily} bg-color-purple pixel-border-purple`}
     >
-      <div className={style.user_daily_title}>
+      <div className={`${style.user_daily_title} ${style.user_title_block}`}>
         <div>
           <FaRegCalendarCheck />
           <span>每日簽到</span>
