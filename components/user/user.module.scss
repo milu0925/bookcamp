@@ -509,7 +509,6 @@
         border: 0;
         outline: none;
       }
-
     }
     input[type="number"]::-webkit-inner-spin-button,
     input[type="number"]::-webkit-outer-spin-button {
@@ -544,47 +543,72 @@
         }
       }
     }
-    .user_edit_btn{
+    .user_edit_btn {
       width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: center;
       gap: 3rem;
-      padding:50px 0 0 0;
-      a,button{
+      padding: 50px 0 0 0;
+      a,
+      button {
         color: var(--black);
         font-size: 18px;
         font-weight: bolder;
         padding: 8px 16px;
         cursor: pointer;
       }
-      a:hover{
+      a:hover {
         transform: scale(1.02);
         background-color: var(--grey);
-        box-shadow:
-        0 -3px 0 var(--grey),
-        -3px 0 0 var(--grey),
-        0 3px 0 rgb(114, 114, 114),
-        3px 0 0 rgb(114, 114, 114),
-        6px 0 0 var(--black),
-        -6px 0 0 var(--black),
-        0 6px 0 var(--black),
-        0 -6px 0 var(--black),
-        0 0 0 3px var(--black);
+        box-shadow: 0 -3px 0 var(--grey), -3px 0 0 var(--grey),
+          0 3px 0 rgb(114, 114, 114), 3px 0 0 rgb(114, 114, 114),
+          6px 0 0 var(--black), -6px 0 0 var(--black), 0 6px 0 var(--black),
+          0 -6px 0 var(--black), 0 0 0 3px var(--black);
       }
-      button:hover{
+      button:hover {
         transform: scale(1.02);
         background-color: var(--main-orange);
-        box-shadow:
-        0 -3px 0 var(--main-orange),
-        -3px 0 0 var(--main-orange),
-        0 3px 0 #ce5900,
-        3px 0 0 #ce5900,
-        6px 0 0 var(--black),
-        -6px 0 0 var(--black),
-        0 6px 0 var(--black),
-        0 -6px 0 var(--black),
-        0 0 0 3px var(--black);
+        box-shadow: 0 -3px 0 var(--main-orange), -3px 0 0 var(--main-orange),
+          0 3px 0 #ce5900, 3px 0 0 #ce5900, 6px 0 0 var(--black),
+          -6px 0 0 var(--black), 0 6px 0 var(--black), 0 -6px 0 var(--black),
+          0 0 0 3px var(--black);
+      }
+    }
+
+    .user_edit_password_ill {
+      background: linear-gradient(
+        45deg,
+        var(--main-brightpurple) 0%,
+        var(--main-brightpurple) 25%,
+        #a47aff 25%,
+        #a47aff 35%,
+        var(--main-brightpurple) 35%,
+        var(--main-brightpurple) 45%,
+        #a47aff 45%,
+        #a47aff 70%,
+        var(--main-brightpurple) 70%,
+        var(--main-brightpurple) 100%
+      );
+      color: white;
+      width: 100%;
+      max-width: 40%;
+      padding: 2rem;
+      > div {
+        display: flex;
+        gap: 5px;
+        padding-bottom: 1rem;
+        font-size: 14px;
+        svg {
+          font-size: 24px;
+        }
+        &:first-child {
+          font-family: "zpix";
+          font-size: 20px;
+          svg {
+            font-size: 20px;
+          }
+        }
       }
     }
   }

@@ -19,7 +19,7 @@ export default function CartPoint({ setOrder }) {
   };
   useEffect(()=>{
     handleUserData()
-  },[])
+  },[auth.isAuth])
 
   return (
     <div className={`${style.r_cart_point} pixel-border-yellow bg-yellow`}>

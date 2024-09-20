@@ -8,9 +8,13 @@ import { useAuth } from "@/hooks/auth-context";
 import { FaMapMarkedAlt, FaBirthdayCake } from "react-icons/fa";
 import { MdBoy, MdGirl } from "react-icons/md";
 import Link from "next/link";
+import { user_information_update } from "@/hooks/call-api";
+import Swal from "sweetalert2";
+import { useRouter } from "next/router";
 export default function EditInformation() {
-  const { auth } = useAuth();
+  const { auth, handleLogout } = useAuth();
   const [newFrom, setNewFrom] = useState({});
+  const router = useRouter();
 
   // 寫入性別
   useEffect(() => {
@@ -26,8 +30,25 @@ export default function EditInformation() {
     setNewFrom((prev) => ({ ...prev, [name]: value }));
   };
   // 確認變更
-  const handleSave = () => {};
-
+  const handleSave = () => {
+    Swal.fire({
+      position: "center",
+      icon: "warning",
+      title: "確認修改資料嗎?",
+      text: "確認後會請您重新登入。",
+      showCancelButton: true,
+      confirmButtonText: "確認",
+      cancelButtonText: "取消",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        user_information_update(newFrom).then((v) => {
+          if (v.message === "success") {
+            handleLogout();
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div
