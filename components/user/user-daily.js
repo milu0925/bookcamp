@@ -67,7 +67,7 @@ export default function UserDaily() {
           每日簽到 !<FaRegCheckCircle />
         </button>
         <span>
-          每日簽到即可獲得0.01點
+          每日簽到即可獲得1點
           <FaSackDollar />
           紅利點數~
         </span>

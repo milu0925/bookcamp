@@ -221,6 +221,14 @@ body {
     0 0 0 3px var(--black);
 }
 
+.pixel-border-white {
+  box-shadow:
+    2px 0 0 rgb(200, 200, 200),
+    -2px 0 0 white,
+    0 -2px 0 white,
+    0 2px 0 rgb(200, 200, 200);
+}
+
 // 底色
 .bg-purple {
   background-color: var(--main-purple);

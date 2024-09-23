@@ -19,7 +19,6 @@
     padding: 1rem 1rem;
   }
 }
-
 .col_user_aside {
   display: flex;
   flex-direction: column;
@@ -481,6 +480,12 @@
       align-items: center;
       gap: 5px;
       padding: 12px;
+      div {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        font-size: 12px;
+      }
     }
     input {
       width: 100%;
@@ -575,7 +580,6 @@
           0 0 0 3px var(--black);
       }
     }
-
     .user_edit_password_ill {
       background: linear-gradient(
         45deg,
@@ -612,7 +616,96 @@
       }
     }
   }
+  // 訂單資訊
+  .user_order_none {
+    padding: 0;
+    > div {
+      width: auto;
+      flex-direction: row;
+    }
+  }
+  .user_content_list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    .user_order_munber {
+    }
+  }
 }
+// 會員訂單
+.col_user_order {
+  max-width: 1000px;
+  width: 100%;
+  height: auto;
+  .user_edit_information_title {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--main-colorpurple);
+  }
+  .user_order_content {
+    background-color: var(--main-purple);
+    box-shadow: 0 -3px var(--main-brightpurple);
+    color: var(--white);
+    min-height: 400px;
+    .user_content_list {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      place-items: center;
+      padding-block: 2px;
+      &.title_color {
+        background: var(--main-darkpurple);
+      }
+    }
+    .fn_group {
+      height: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      // align-items: center;
+      gap: 8px;
+      --border: #9e9ab4b9;
+      --active-border:rgb(200, 200, 200);
+      .view_detail {
+        font-size: 12px;
+        padding: 3px 15px;
+        cursor: pointer;
+        text-align: center;
+        color: var(--white);
+        background: #62589b;
+        box-shadow: 0 0 0 1px var(--border), 0 2px var(--border),
+          0 -2px var(--border), 2px 0 var(--border), -2px 0 var(--border);
+
+        &:hover {
+          color: black;
+          background: white;
+          box-shadow: 0 0 0 1px var(--active-border), 0 2px var(--active-border),
+            0 -2px var(--active-border), 2px 0 var(--active-border),
+            -2px 0 var(--active-border);
+        }
+      }
+      .go_pay {
+        font-size: 12px;
+        padding: 3px 15px;
+        cursor: pointer;
+        text-align: center;
+        color: var(--white);
+        background: #62589b;
+        box-shadow: 0 0 0 1px var(--border), 0 2px var(--border),
+          0 -2px var(--border), 2px 0 var(--border), -2px 0 var(--border);
+          &:hover {
+            color: black;
+            background: white;
+            box-shadow: 0 0 0 1px var(--active-border), 0 2px var(--active-border),
+              0 -2px var(--active-border), 2px 0 var(--active-border),
+              -2px 0 var(--active-border);
+          }
+      }
+    }
+  }
+}
+
 @keyframes moveUpDown {
   0%,
   100% {

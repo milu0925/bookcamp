@@ -28,7 +28,7 @@ export const AuthContext = ({ children }) => {
   const [img,setImg] = useState("");
 
   // 隱私頁面路由，未登入時會，檢查後跳轉至登入頁
-  const protectedRoutes = ["/user","/user/update","/user/reset-password"];
+  const protectedRoutes = ["/user","/user/update","/user/reset-password","/user/order","/user/point-record","/user/forum","/user/forum/message","/user/forum/collect"];
   // 檢驗會員身分
   const checkAuth = async () => {
     try {

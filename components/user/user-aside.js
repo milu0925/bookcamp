@@ -72,10 +72,10 @@ export default function UserAside() {
           <div>
             <ul>
               <li>
-                <Link href="/member/order">訂單紀錄</Link>
+                <Link href="/user/order">訂單紀錄</Link>
               </li>
               <li>
-                <Link href="/member/point-record">點數查詢</Link>
+                <Link href="/user/point-record">點數查詢</Link>
               </li>
             </ul>
           </div>
@@ -99,10 +99,13 @@ export default function UserAside() {
           <div>
             <ul>
               <li>
-                <Link href="/member/forum/forum-user-post">我的文章</Link>
+                <Link href="/user/forum">我的文章</Link>
               </li>
               <li>
-                <Link href="/member/forum/forum-collect">收藏文章</Link>
+                <Link href="/user/forum/message">我的留言</Link>
+              </li>
+              <li>
+                <Link href="/user/forum/collect">收藏文章</Link>
               </li>
             </ul>
           </div>

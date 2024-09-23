@@ -38,6 +38,12 @@ export default function EditPassword() {
       }).then((r) => {
         handleLogout();
       });
+    } else if (data.message === "not found") {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "舊密碼輸入錯誤，請重新輸入。",
+      });
     }
   };
 
@@ -99,13 +105,13 @@ export default function EditPassword() {
     return true;
   };
   // 當輸入完舊密碼後，離開input框若不正確即時跳提示
-  const [message,setMessage] = useState(false)
+  const [message, setMessage] = useState("");
   const checkPassword = async () => {
-    const data = await user_password_check(formData)    
-    if (data.message === "success"){
-      setMessage(false)
-    }else if (data.message === "not found"){
-      setMessage(true)
+    const data = await user_password_check(formData);
+    if (data.message === "success") {
+      setMessage(data.message);
+    } else if (data.message === "not found") {
+      setMessage(data.message);
     }
   };
   return (
@@ -127,7 +133,17 @@ export default function EditPassword() {
             <label htmlFor="oldpassword">
               <FaKey />
               舊密碼
-              {message ? <MdCancel /> : <FaCheckCircle />}
+              {message ? (
+                message === "success" ? (
+                  <FaCheckCircle style={{ color: "green" }} />
+                ) : (
+                  <div style={{ color: "red" }}>
+                    <MdCancel /> 密碼錯誤請重新輸入
+                  </div>
+                )
+              ) : (
+                ""
+              )}
             </label>
             <div>
               <input

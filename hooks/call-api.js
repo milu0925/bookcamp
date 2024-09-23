@@ -74,9 +74,13 @@ export const user_img_upload = async (file) => {
 // 更新會員資料
 export const user_information_update = async (datas) => {
   try {
-    const { data } = await axios.patch(`${domain}/user/update/information`, datas, {
-      withCredentials: true,
-    });
+    const { data } = await axios.patch(
+      `${domain}/user/update/information`,
+      datas,
+      {
+        withCredentials: true,
+      }
+    );
     return data;
   } catch (error) {
     console.log(error);
@@ -93,13 +97,21 @@ export const user_password_check = async (datas) => {
     console.log(error);
   }
 };
-
 // 更新會員密碼
 export const user_password_update = async (datas) => {
   try {
     const { data } = await axios.post(`${domain}/user/update/password`, datas, {
       withCredentials: true,
     });
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+// 驗證信
+export const user_verify_mail = async (datas) => {
+  try {
+    const { data } = await axios.post(`${domain}/user/verify-mail`, datas);
     return data;
   } catch (error) {
     console.log(error);

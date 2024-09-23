@@ -86,7 +86,7 @@ export default function UserLogin() {
             value={user.password}
             onChange={handleUserData}
           />
-          <Link href="/member/forget-password" className="font-sm ms-3">
+          <Link href="/user/forget-password" className="font-sm ms-3">
             忘記密碼？
           </Link>
         </div>

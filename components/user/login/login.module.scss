@@ -25,6 +25,15 @@
       white-space: nowrap;
       font-weight: bolder;
       padding-bottom: 1em;
+      button{
+        margin-inline: 1rem;
+        padding: 5px 12px;
+        font-size: 12px;
+        cursor: pointer;
+        &:disabled{
+          cursor: auto;
+        }
+      }
       input {
         width: 100%;
         background-color: var(--main-darkpurple);
