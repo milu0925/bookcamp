@@ -108,17 +108,17 @@ body {
   display: flex;
   margin: 1rem 0 5rem 0;
 }
-.l-cart{
+.l-cart {
   width: 90%;
   display: flex;
   margin: 1rem auto 5rem auto;
 }
 
-.l-user{
+.l-user {
   display: flex;
   gap: 25px;
   margin: 1rem auto 5rem auto;
-  div:last-child{
+  > div:last-child {
     margin-top: auto;
   }
 }
@@ -167,18 +167,15 @@ body {
 }
 
 // 共用顏色外框
-.pixel-d-purple{
-  box-shadow:
-    3px 0 0 var(--main-darkpurple),
-    -3px 0 0 var(--main-darkpurple),
-    0 -3px 0 var(--main-darkpurple),
-    0 3px 0 var(--main-darkpurple);
+.pixel-d-purple {
+  box-shadow: 3px 0 0 var(--main-darkpurple), -3px 0 0 var(--main-darkpurple),
+    0 -3px 0 var(--main-darkpurple), 0 3px 0 var(--main-darkpurple);
 }
 
 .pixel-purple {
-  box-shadow: 3px 0 0 var(--main-colorpurple), -3px 0 0 var(--main-colorpurple), 0 -3px 0 var(--main-colorpurple), 0 3px 0 var(--main-colorpurple);
+  box-shadow: 3px 0 0 var(--main-colorpurple), -3px 0 0 var(--main-colorpurple),
+    0 -3px 0 var(--main-colorpurple), 0 3px 0 var(--main-colorpurple);
 }
-
 
 .pixel-border-yellow {
   box-shadow: 0 0 0 2px var(--main-yellow), 0 4px 0 #ffa81d, 4px 0 0 #ffa81d,
@@ -204,28 +201,21 @@ body {
     -3px 0 0 var(--main-brightpurple), 0 3px 0 var(--main-colorpurple),
     3px 0 0 var(--main-colorpurple), 6px 0 0 var(--black), -6px 0 0 var(--black),
     0 6px 0 var(--black), 0 -6px 0 var(--black), 0 0 0 3px var(--black);
-    box-shadow: 0 -3px 0 var(--main-colorpurple), -3px 0 0 var(--main-colorpurple), 0 3px 0 var(--main-purple), 3px 0 0 var(--main-purple), 6px 0 0 var(--black), -6px 0 0 var(--black), 0 6px 0 var(--black), 0 -6px 0 var(--black), 0 0 0 3px var(--black);
-  
-  }
+  box-shadow: 0 -3px 0 var(--main-colorpurple), -3px 0 0 var(--main-colorpurple),
+    0 3px 0 var(--main-purple), 3px 0 0 var(--main-purple), 6px 0 0 var(--black),
+    -6px 0 0 var(--black), 0 6px 0 var(--black), 0 -6px 0 var(--black),
+    0 0 0 3px var(--black);
+}
 
 .pixel-border-orange {
-  box-shadow:
-    0 -3px 0 var(--main-orange),
-    -3px 0 0 var(--main-orange),
-    0 3px 0 #ce5900,
-    3px 0 0 #ce5900,
-    6px 0 0 var(--black),
-    -6px 0 0 var(--black),
-    0 6px 0 var(--black),
-    0 -6px 0 var(--black),
+  box-shadow: 0 -3px 0 var(--main-orange), -3px 0 0 var(--main-orange),
+    0 3px 0 #ce5900, 3px 0 0 #ce5900, 6px 0 0 var(--black),
+    -6px 0 0 var(--black), 0 6px 0 var(--black), 0 -6px 0 var(--black),
     0 0 0 3px var(--black);
 }
 
 .pixel-border-white {
-  box-shadow:
-    2px 0 0 rgb(200, 200, 200),
-    -2px 0 0 white,
-    0 -2px 0 white,
+  box-shadow: 2px 0 0 rgb(200, 200, 200), -2px 0 0 white, 0 -2px 0 white,
     0 2px 0 rgb(200, 200, 200);
 }
 
@@ -236,13 +226,13 @@ body {
 .bg-bright-purple {
   background-color: var(--main-brightpurple);
 }
-.bg-color-purple{
+.bg-color-purple {
   background-color: var(--main-colorpurple);
 }
 .bg-dark-purple {
   background-color: var(--main-darkpurple);
 }
-.bg-orange{
+.bg-orange {
   background-color: var(--main-orange);
 }
 .bg-yellow {

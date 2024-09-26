@@ -26,17 +26,13 @@ export default function CartFunction({ order, setOrder }) {
         }, 1000);
       }
     } else if (order.pay == 2) {
-      
       const req = await checkout(order);
       if (req?.message === "success") {
-        setAuth({
-          isAuth: true,
-          user: parseJwt(req.data.token),
-        });
+        console.log(req.data);
+
         setTimeout(() => {
-          router.push(`/cart/finish?code=${req.data.code}`)
+          router.push(`/cart/finish?code=${req.data}`);
         }, 1000);
-        
       }
     }
   };

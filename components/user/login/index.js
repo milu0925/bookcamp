@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import style from "./login.module.scss";
 
-import { BsGoogle } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
 import { FaLine } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
@@ -14,7 +14,8 @@ export default function UserLogin() {
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
   const [error, setError] = useState(false);
   const router = useRouter();
-  const { setAuth,handleLogin } = useAuth();
+  const { setAuth, handleLogin, handleGoogleLogin, handleLineLogin } =
+    useAuth();
   const [user, setUser] = useState({ email: "", password: "" });
   const handleUserData = (e) => {
     const { name, value } = e.target;
@@ -96,7 +97,9 @@ export default function UserLogin() {
         <div className={style.r_login_btn_group}>
           <button
             className="pixel-border-purple bg-color-purple"
-            onClick={()=>{handleLogin(checkForm, user)}}
+            onClick={() => {
+              handleLogin(checkForm, user);
+            }}
           >
             登入
           </button>
@@ -109,8 +112,16 @@ export default function UserLogin() {
       <div className={`${style.r_quick_login} pixel-border-black bg-black`}>
         <div className={style.quick_login_text}>快速登入</div>
         <div className={style.quick_login_logo}>
-          <FaLine />
-          <BsGoogle />
+          <FaLine
+            onClick={() => {
+              handleLineLogin("login");
+            }}
+          />
+          <FcGoogle
+            onClick={() => {
+              handleGoogleLogin("login");
+            }}
+          />
           <FaFacebook />
         </div>
       </div>

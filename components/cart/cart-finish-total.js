@@ -10,7 +10,7 @@ export default function CartFinishTotal({ user }) {
   useEffect(() => {
     if (user.detail) {
       const newtotal = user.detail.reduce((acc, item) => {
-        return acc + item.b_price * item.b_count;
+        return acc + item.b_price * item.od_count;
       }, 0);
       setSubtotal(newtotal);
     }
@@ -44,7 +44,11 @@ export default function CartFinishTotal({ user }) {
         <FaRegCheckCircle />
         付款方式
         <span className="bg-dark-purple">
-          {user.order ? (user.order.pay == 1 ? "linepay" : "貨到付款") : "未付款"}
+          {user.order
+            ? user.order.pay == 1
+              ? "linepay"
+              : "貨到付款"
+            : "未付款"}
         </span>
       </div>
       <div className={style.col_cart_total}>

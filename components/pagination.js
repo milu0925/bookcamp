@@ -13,7 +13,7 @@ export default function Pagination({ ctPage, setctPage, total, PerPage }) {
     if (type === "first") {
       setctPage(1);
     } else if (type === "last") {
-      setctPage(total.length / PerPage);
+      setctPage(Math.ceil(total.length / PerPage)); //無條件進位
     } else if (type === "sub" && ctPage > 1) {
       setctPage(ctPage - 1);
     } else if (type === "add" && ctPage < total.length / PerPage) {

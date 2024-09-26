@@ -25,12 +25,12 @@
       white-space: nowrap;
       font-weight: bolder;
       padding-bottom: 1em;
-      button{
+      button {
         margin-inline: 1rem;
         padding: 5px 12px;
         font-size: 12px;
         cursor: pointer;
-        &:disabled{
+        &:disabled {
           cursor: auto;
         }
       }
@@ -225,30 +225,30 @@
   }
 }
 
-.l_not_login{
+.l_not_login {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 35px;
   margin-block: 10vh;
-  img{
+  img {
     max-width: 200px;
   }
-  a{
+  a {
     padding: 10px 30px;
     font-weight: bolder;
   }
 }
 
-.quick_write{
+.quick_write {
   cursor: pointer;
   padding: 5px 15px;
   color: white;
-  background-color: rgb(43, 39, 39,0.5);
+  background-color: rgb(43, 39, 39, 0.5);
   border-radius: 5px;
-  &:active{
-    background-color:rgba(128, 115, 115, 0.418) ;
+  &:active {
+    background-color: rgba(128, 115, 115, 0.418);
   }
 }
 

@@ -25,10 +25,19 @@ export const AuthContext = ({ children }) => {
   // 會員點數
   const [point, setPoint] = useState(0);
   // 會員圖片
-  const [img,setImg] = useState("");
+  const [img, setImg] = useState("");
 
   // 隱私頁面路由，未登入時會，檢查後跳轉至登入頁
-  const protectedRoutes = ["/user","/user/update","/user/reset-password","/user/order","/user/point-record","/user/forum","/user/forum/message","/user/forum/collect"];
+  const protectedRoutes = [
+    "/user",
+    "/user/update",
+    "/user/reset-password",
+    "/user/order",
+    "/user/point-record",
+    "/user/forum",
+    "/user/forum/message",
+    "/user/forum/collect",
+  ];
   // 檢驗會員身分
   const checkAuth = async () => {
     try {
@@ -43,8 +52,8 @@ export const AuthContext = ({ children }) => {
       }
     } catch (error) {
       if (
-        error.response.data.message === "未登入" &&
-        error.response.status === 401
+        error.response?.data.message === "未登入" &&
+        error.response?.status === 401
       ) {
         setAuth({
           isAuth: false,
@@ -84,27 +93,7 @@ export const AuthContext = ({ children }) => {
       });
 
       if (data.message === "success") {
-        setAuth({
-          isAuth: true,
-          user: parseJwt(data.token),
-        });
-
-        // 假如未登入狀態下購物車有東西
-        const cartitem = JSON.parse(sessionStorage.getItem("cart"));
-        await pushInUserCartItems(cartitem).then((v) => {
-          if (v?.message === "success") {
-            // 清除session資料
-            sessionStorage.removeItem("cart");
-          }
-        });
-
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "登入成功，即將導向至首頁。",
-        }).then(() => {
-          router.push("/");
-        });
+        await loginSuccess(data.token);
       }
     } catch (error) {
       Swal.fire({
@@ -113,6 +102,29 @@ export const AuthContext = ({ children }) => {
         title: error,
       });
     }
+  };
+  const loginSuccess = async (token) => {
+    setAuth({
+      isAuth: true,
+      user: await parseJwt(token),
+    });
+    // 假如未登入狀態下購物車有東西
+    const cartitem = JSON.parse(sessionStorage.getItem("cart"));
+    await pushInUserCartItems(cartitem).then((v) => {
+      if (v?.message === "success") {
+        // 清除session資料
+        sessionStorage.removeItem("cart");
+      }
+    });
+
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "登入成功，即將導向至首頁。",
+      showConfirmButton: false,
+      timer: 1000,
+    });
+    router.push("/");
   };
   // 登出
   const handleLogout = async () => {
@@ -143,6 +155,37 @@ export const AuthContext = ({ children }) => {
       console.log(error);
     }
   };
+  // google登陸
+  const handleGoogleLogin = async (code) => {
+    try {
+      const { data } = await axios.get(`${domain}/google/login?code=${code}`);
+      if (data.message === "success") {
+        router.push(data.data);
+      }
+    } catch (error) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: error,
+      });
+    }
+  };
+  // line登陸
+  const handleLineLogin = async (code) => {
+    try {
+      const { data } = await axios.get(`${domain}/line/login?code=${code}`);
+      if (data.message === "success") {
+        router.push(data.data);
+      }
+    } catch (error) {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: error,
+      });
+    }
+  };
+
   // didMount(初次渲染)後，向伺服器要求檢查會員是否登入中
   useEffect(() => {
     checkAuth();
@@ -165,6 +208,9 @@ export const AuthContext = ({ children }) => {
         handleLogin,
         handleLogout,
         handleUserData,
+        handleGoogleLogin,
+        handleLineLogin,
+        loginSuccess,
       }}
     >
       {children}

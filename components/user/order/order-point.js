@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "../user.module.scss";
 import { FaUser } from "react-icons/fa";
+import { user_point_list } from "@/hooks/call-api";
 export default function OrderPoint() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    getData();
+  }, []);
+  const getData = async () => {
+    const data = await user_point_list();
+    if (data?.message == "success") {
+      setData(data.data);
+    }
+  };
   return (
     <>
       <div
@@ -22,11 +33,13 @@ export default function OrderPoint() {
             <div>點數</div>
             <div>獲取方式</div>
           </div>
-          <div className={style.user_content_list}>
-            <div>日期</div>
-            <div>點數</div>
-            <div>獲取方式</div>
-          </div>
+          {data.map((v) => (
+            <div className={style.user_content_list}>
+              <div>{v.date}</div>
+              <div>{v.point}</div>
+              <div>{v.type === "consume" ? "消費金額回饋" : "每日簽到"}</div>
+            </div>
+          ))}
         </div>
       </div>
     </>

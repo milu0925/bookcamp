@@ -41,7 +41,7 @@ export const get_user = async () => {
 // 每日簽到檢查
 export const get_daily = async () => {
   try {
-    const { data } = await axios.get(`${domain}/user/get-checkin`, {
+    const { data } = await axios.get(`${domain}/point/get-checkin`, {
       withCredentials: true,
     });
     return data;
@@ -52,7 +52,7 @@ export const get_daily = async () => {
 // 每日簽到檢查
 export const check_daily = async () => {
   try {
-    const { data } = await axios.get(`${domain}/user/check-checkin`, {
+    const { data } = await axios.get(`${domain}/point/check-checkin`, {
       withCredentials: true,
     });
     return data;
@@ -108,6 +108,17 @@ export const user_password_update = async (datas) => {
     console.log(error);
   }
 };
+// 讀取會員點數清單
+export const user_point_list = async () => {
+  try {
+    const { data } = await axios.get(`${domain}/point/user-point-list`, {
+      withCredentials: true,
+    });
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
 // 驗證信
 export const user_verify_mail = async (datas) => {
   try {
@@ -136,6 +147,8 @@ export const checkout_linepay = async (datas) => {
     const { data } = await axios.post(`${domain}/cart/linepay`, datas, {
       withCredentials: true,
     });
+    console.log(data, "沒抓到嗎??");
+
     return data;
   } catch (error) {
     console.log(error);

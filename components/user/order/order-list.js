@@ -3,6 +3,7 @@ import style from "../user.module.scss";
 import { FaUser } from "react-icons/fa";
 import { read_all_order } from "@/hooks/call-api";
 import Pagination from "@/components/pagination";
+import { useRouter } from "next/router";
 export default function OrderList() {
   const [orderdata, setOrderdata] = useState([]);
   useEffect(() => {
@@ -23,6 +24,16 @@ export default function OrderList() {
   const indexOfLastItem = ctPage * PerPage; //當前頁最後一筆資料的索引。
   const indexOfFirstItem = indexOfLastItem - PerPage; //當前頁第一筆資料的索引。
   const currentOrders = orderdata.slice(indexOfFirstItem, indexOfLastItem); // 拆分好分頁的顯示物
+
+  // 前往單頁明細
+  const router = useRouter();
+  const handleDetail = async (id) => {
+    router.push(`/user/order/${id}`);
+  };
+  // 前往付款畫面
+  const handlePay = async (url) => {
+    router.push(url);
+  };
   return (
     <>
       <div
@@ -54,10 +65,23 @@ export default function OrderList() {
               <div>{v.pay === 1 ? "linepay" : "貨到付款"}</div>
               <div>{v.o_status === 1 ? "已付款" : "未付款"}</div>
               <div className={style.fn_group}>
-                <button className={style.view_detail}>查看明細</button>
-                <button className={style.go_pay}>前往付款</button>
+                <button
+                  className={style.view_detail}
+                  onClick={() => {
+                    handleDetail(v.o_id);
+                  }}
+                >
+                  查看明細
+                </button>
                 {v.pay === 1 && v.o_status === 0 ? (
-                  <button>前往付款</button>
+                  <button
+                    className={style.go_pay}
+                    onClick={() => {
+                      handlePay(v.linepay_url);
+                    }}
+                  >
+                    前往付款
+                  </button>
                 ) : (
                   ""
                 )}

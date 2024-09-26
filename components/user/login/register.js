@@ -7,9 +7,13 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { useAuth } from "@/hooks/auth-context";
+import { FaLine } from "react-icons/fa6";
+import { FcGoogle } from "react-icons/fc";
 export default function UserRegister() {
   const router = useRouter();
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
+  const { handleGoogleLogin, handleLineLogin } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -180,6 +184,18 @@ export default function UserRegister() {
         <div className={style.r_login_title}>
           <FaUserPlus />
           <h4>加入會員</h4>
+          <FaLine
+            style={{ color: "#25bd39", cursor: "pointer" }}
+            onClick={() => {
+              handleLineLogin("signup");
+            }}
+          />
+          <FcGoogle
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              handleGoogleLogin("signup");
+            }}
+          />
         </div>
         <div className={style.r_login_information}>
           <label htmlFor="email">
