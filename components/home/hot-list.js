@@ -99,7 +99,12 @@ export default function HotList() {
                         <MdAttachMoney />
                         {v.b_price}元
                       </div>
-                      <button className="pixel-border-add" onClick={()=>{handleAddCart(v)}}>
+                      <button
+                        className="pixel-border-add"
+                        onClick={() => {
+                          handleAddCart(v);
+                        }}
+                      >
                         <FaCartPlus />
                       </button>
                     </div>

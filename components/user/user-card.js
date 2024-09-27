@@ -9,18 +9,18 @@ export default function UserCard() {
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
   // 上傳圖片
   const handleFile = async (e) => {
-    const file = e.target.files[0]; 
+    const file = e.target.files[0];
     const formData = new FormData();
     formData.append("avatar", file);
     const data = await user_img_upload(formData);
-    
-    if (data.message === "success"){
+
+    if (data.message === "success") {
       await handleUserData();
     }
   };
   useEffect(() => {
     handleUserData();
-  }, []);
+  }, [handleUserData]);
 
   return (
     <div className={`${style.col_user_card}`}>

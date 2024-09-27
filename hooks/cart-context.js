@@ -8,10 +8,6 @@ export const CartContext = ({ children }) => {
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
   const { auth } = useAuth();
   const [cart, setCart] = useState([]);
-
-  useEffect(() => {
-    getdata();
-  }, [auth]);
   // 取得購物車資訊
   const getdata = async () => {
     try {
@@ -25,9 +21,11 @@ export const CartContext = ({ children }) => {
       console.log(error.response);
     }
   };
+  useEffect(() => {
+    getdata();
+  }, [getdata, auth]);
   // 加入購物車
   const handleAddCart = async (datas) => {
-
     try {
       // 假如有登入會員
       if (auth.isAuth) {
@@ -35,7 +33,7 @@ export const CartContext = ({ children }) => {
         const { data } = await axios.post(`${domain}/cart/add`, datas, {
           withCredentials: true,
         });
-        
+
         if (data.message === "success") {
           setCart(data.data);
           Swal.fire({
@@ -118,10 +116,10 @@ export const CartContext = ({ children }) => {
             )
             .filter((item) => item.c_count > 0);
         } else if (tag === "del") {
-          mycart = cart.filter((item) => item.b_id !== datas.b_id); 
+          mycart = cart.filter((item) => item.b_id !== datas.b_id);
         }
         sessionStorage.setItem("cart", JSON.stringify(mycart));
-        setCart(mycart)
+        setCart(mycart);
       }
     } catch (error) {
       // 未登入和驗證身分失敗

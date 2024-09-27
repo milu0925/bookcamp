@@ -4,10 +4,12 @@ import { FaUser } from "react-icons/fa";
 import { user_point_list } from "@/hooks/call-api";
 export default function OrderPoint() {
   const [data, setData] = useState([]);
+  console.log(data);
+
   useEffect(() => {
-    getData();
-  }, []);
-  const getData = async () => {
+    getdata();
+  }, [getdata]);
+  const getdata = async () => {
     const data = await user_point_list();
     if (data?.message == "success") {
       setData(data.data);
@@ -34,7 +36,7 @@ export default function OrderPoint() {
             <div>獲取方式</div>
           </div>
           {data.map((v) => (
-            <div className={style.user_content_list}>
+            <div key={v.id} className={style.user_content_list}>
               <div>{v.date}</div>
               <div>{v.point}</div>
               <div>{v.type === "consume" ? "消費金額回饋" : "每日簽到"}</div>

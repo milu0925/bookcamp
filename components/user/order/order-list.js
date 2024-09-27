@@ -7,9 +7,9 @@ import { useRouter } from "next/router";
 export default function OrderList() {
   const [orderdata, setOrderdata] = useState([]);
   useEffect(() => {
-    getData();
-  }, []);
-  const getData = async () => {
+    getdata();
+  }, [getdata]);
+  const getdata = async () => {
     const data = await read_all_order();
     if (data?.message === "success") {
       setOrderdata(data.data);

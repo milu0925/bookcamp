@@ -8,9 +8,9 @@ export default function OrderListID() {
   const { id } = router.query;
   const [orderdata, setOrderdata] = useState([]);
   useEffect(() => {
-    getData();
-  }, []);
-  const getData = async () => {
+    getdata();
+  }, [getdata]);
+  const getdata = async () => {
     const data = await read_one_order(id);
     if (data?.message === "success") {
       setOrderdata(data.data.detail);

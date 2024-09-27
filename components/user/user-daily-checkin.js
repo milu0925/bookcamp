@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./user.module.scss";
-export default function UserDailyCheckin({checkDay}) {
+export default function UserDailyCheckin({ checkDay }) {
   // 計算這個月的月份日期
   const [day, setDay] = useState([]);
   const calcThisMonthDay = () => {
@@ -12,7 +12,7 @@ export default function UserDailyCheckin({checkDay}) {
     const date = calcThisMonthDay();
     const arraydate = Array.from({ length: date }, (v, i) => i + 1);
     setDay(arraydate);
-  }, []);
+  }, [calcThisMonthDay, setDay]);
 
   return (
     <>

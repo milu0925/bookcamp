@@ -23,7 +23,7 @@ export default function UserDaily() {
     }
     if (data.message === "success") {
       setCheckDay(data.data);
-      handleUserData()
+      handleUserData();
       Swal.fire({
         position: "center",
         icon: "success",
@@ -39,7 +39,7 @@ export default function UserDaily() {
   };
   useEffect(() => {
     checkdata("get");
-  }, []);
+  }, [checkdata]);
   return (
     <div
       className={`${style.col_user_daily} bg-color-purple pixel-border-purple`}

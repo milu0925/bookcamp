@@ -189,7 +189,7 @@ export const AuthContext = ({ children }) => {
   // didMount(初次渲染)後，向伺服器要求檢查會員是否登入中
   useEffect(() => {
     checkAuth();
-  }, [router.isReady, router.pathname]);
+  }, [checkAuth, router.isReady, router.pathname]);
   // 重新取得會員資料
   const handleUserData = async () => {
     const { data } = await get_user();

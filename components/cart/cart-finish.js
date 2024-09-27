@@ -1,4 +1,4 @@
-import React, { useState,  useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./cart.module.scss";
 import CartFinishTotal from "./cart-finish-total";
 import CartButton from "./cart-button";
@@ -17,7 +17,7 @@ export default function CartFinish() {
   };
   useEffect(() => {
     getdata(oid);
-  }, [router.isReady ,router.query]);
+  }, [getdata, oid, router.isReady, router.query]);
 
   return (
     <div className={style.col_cart_function}>

@@ -10,7 +10,7 @@ export default function CartData({ setOrder }) {
     if (chosen !== 0) {
       setOrder((prev) => ({ ...prev, pay: chosen }));
     }
-  }, [chosen]);
+  }, [setOrder, chosen]);
 
   return (
     <div className={`${style.r_cart_data} pixel-border-black bg-white`}>

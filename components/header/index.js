@@ -17,23 +17,21 @@ export default function Header() {
   const handleMouseLeave = () => {
     setIsHovered(false);
   };
-  
+
   // 購物車的數量顯示
   const [count, setCount] = useState(0);
   const renderCount = () => {
     if (auth.isAuth) {
       setCount(cart?.length);
-      
     } else {
       const data = sessionStorage.getItem("cart");
-      const countdata = JSON.parse(data);     
+      const countdata = JSON.parse(data);
       countdata?.length > 0 ? setCount(countdata.length) : setCount(0);
     }
   };
   useEffect(() => {
     renderCount();
-  }, [auth, cart]);
-
+  }, [renderCount, auth, cart]);
 
   return (
     <>
