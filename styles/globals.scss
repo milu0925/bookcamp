@@ -244,3 +244,33 @@ body {
 .bg-white {
   background-color: var(--white);
 }
+
+// 測試用
+.socket {
+  margin-top: 30px;
+  margin-inline: auto;
+  width: 500px;
+  color: white;
+  h1 {
+    font-size: 20px;
+  }
+  button {
+    background: var(--main-brightpink);
+    color: black;
+  }
+}
+.socket-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--main-brightpurple);
+  .socket-col {
+    display: flex;
+    justify-content: flex-start; /* 預設靠左 */
+    padding: 10px;
+    border-radius: 10px;
+    &.socket-right {
+      justify-content: flex-end; /* 靠右 */
+    }
+  }
+}
