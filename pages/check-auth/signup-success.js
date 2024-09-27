@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import Swal from "sweetalert2";
-export default function SignupFail() {
+export default function SignupSuccess() {
   const router = useRouter();
   useEffect(() => {
     const showAlert = async () => {
