@@ -9,7 +9,7 @@ export default function GoogleOk() {
     if (token) {
       loginSuccess(token);
     }
-  }, [loginSuccess, router.query]);
+  }, [router.query]);
 
   return <div></div>;
 }

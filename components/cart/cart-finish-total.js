@@ -14,7 +14,7 @@ export default function CartFinishTotal({ user }) {
       }, 0);
       setSubtotal(newtotal);
     }
-  }, [setSubtotal, user]);
+  }, [user]);
 
   return (
     <div className={`${style.r_cart_total} pixel-border-purple bg-purple`}>

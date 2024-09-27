@@ -9,7 +9,7 @@ export default function OrderListID() {
   const [orderdata, setOrderdata] = useState([]);
   useEffect(() => {
     getdata();
-  }, [getdata]);
+  }, []);
   const getdata = async () => {
     const data = await read_one_order(id);
     if (data?.message === "success") {

@@ -8,7 +8,7 @@ export default function OrderList() {
   const [orderdata, setOrderdata] = useState([]);
   useEffect(() => {
     getdata();
-  }, [getdata]);
+  }, []);
   const getdata = async () => {
     const data = await read_all_order();
     if (data?.message === "success") {

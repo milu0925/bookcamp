@@ -4,11 +4,9 @@ import { FaUser } from "react-icons/fa";
 import { user_point_list } from "@/hooks/call-api";
 export default function OrderPoint() {
   const [data, setData] = useState([]);
-  console.log(data);
-
   useEffect(() => {
     getdata();
-  }, [getdata]);
+  }, []);
   const getdata = async () => {
     const data = await user_point_list();
     if (data?.message == "success") {

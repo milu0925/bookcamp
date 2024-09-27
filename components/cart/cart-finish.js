@@ -17,7 +17,7 @@ export default function CartFinish() {
   };
   useEffect(() => {
     getdata(oid);
-  }, [getdata, oid, router.isReady, router.query]);
+  }, [oid, router.isReady, router.query]);
 
   return (
     <div className={style.col_cart_function}>

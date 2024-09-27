@@ -14,7 +14,7 @@ export default function Forum() {
   useEffect(() => {
     const visit = Math.floor(100000 + Math.random() * 900000); // 給進入頁面的人一組亂數序號
     setVisitor(visit);
-  }, [setVisitor]);
+  }, []);
   //傳送訊息
   const handleSendMessage = () => {
     let sendMessage = {
@@ -48,7 +48,7 @@ export default function Forum() {
     return () => {
       socket.disconnect();
     };
-  }, [setSocket, setPeople, domain]);
+  }, [domain]);
 
   return (
     <div className="socket">

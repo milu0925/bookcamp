@@ -22,7 +22,7 @@ export default function ForgetPasswordVerity() {
     }
 
     return () => clearTimeout(timer); // 清理計時器
-  }, [setDelay, count]);
+  }, [count]);
   // 寄送驗證信
   const handleResendEmail = () => {
     setCount(60);

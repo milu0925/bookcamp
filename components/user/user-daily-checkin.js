@@ -12,7 +12,7 @@ export default function UserDailyCheckin({ checkDay }) {
     const date = calcThisMonthDay();
     const arraydate = Array.from({ length: date }, (v, i) => i + 1);
     setDay(arraydate);
-  }, [calcThisMonthDay, setDay]);
+  }, []);
 
   return (
     <>

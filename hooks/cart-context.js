@@ -23,7 +23,7 @@ export const CartContext = ({ children }) => {
   };
   useEffect(() => {
     getdata();
-  }, [getdata, auth]);
+  }, [auth]);
   // 加入購物車
   const handleAddCart = async (datas) => {
     try {

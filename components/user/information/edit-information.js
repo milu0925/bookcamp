@@ -23,7 +23,7 @@ export default function EditInformation() {
     } else if (auth.user.gender == "男") {
       setNewFrom((prev) => ({ ...prev, gender: "男" }));
     }
-  }, [setNewFrom, auth.user]);
+  }, [auth.user]);
   // 寫入
   const handleWriteInformation = (e) => {
     let { name, value } = e.target;

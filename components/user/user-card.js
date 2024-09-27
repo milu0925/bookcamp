@@ -20,7 +20,7 @@ export default function UserCard() {
   };
   useEffect(() => {
     handleUserData();
-  }, [handleUserData]);
+  }, []);
 
   return (
     <div className={`${style.col_user_card}`}>

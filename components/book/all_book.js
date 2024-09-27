@@ -21,7 +21,7 @@ export default function AllBook() {
       .catch((err) => {
         console.log(err);
       });
-  }, [readbooks, router.query, tag]);
+  }, [router.query, tag]);
 
   return (
     <div className={style.l_all_book}>

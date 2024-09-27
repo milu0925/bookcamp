@@ -31,7 +31,7 @@ export default function Header() {
   };
   useEffect(() => {
     renderCount();
-  }, [renderCount, auth, cart]);
+  }, [auth, cart]);
 
   return (
     <>
