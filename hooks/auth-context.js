@@ -61,9 +61,9 @@ export const AuthContext = ({ children }) => {
             id: 0,
             name: "",
             email: "",
-            avatar: "",
             birthday: "",
             phone: "",
+            address:"",
           },
         });
         if (protectedRoutes.includes(router.pathname)) {
@@ -195,7 +195,9 @@ export const AuthContext = ({ children }) => {
     const { data } = await get_user();
     setPoint(data[0].point);
     setImg(data[0].u_img);
+    
   };
+console.log(img);
 
   return (
     <CreateAuth.Provider
