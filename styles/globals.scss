@@ -245,20 +245,45 @@ body {
   background-color: var(--white);
 }
 
-// 測試用
-.socket {
-  margin-top: 30px;
-  margin-inline: auto;
-  width: 500px;
-  color: white;
-  h1 {
-    font-size: 20px;
-  }
-  button {
-    background: var(--main-brightpink);
-    color: black;
-  }
+// 聊天室外框
+.chat_screen_bg {
+  background-color: var(--main-darkpurple);
+  background: linear-gradient(135deg, transparent 5px, var(--main-darkpurple) 0)
+      top left,
+    linear-gradient(-135deg, transparent 5px, var(--main-darkpurple) 0) top
+      right,
+    linear-gradient(-45deg, transparent 5px, var(--main-darkpurple) 0) bottom
+      right,
+    linear-gradient(45deg, transparent 5px, var(--main-darkpurple) 0) bottom
+      left;
+  background-size: 75% 75%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  filter: drop-shadow(2px 2px 0 var(--main-colorpurple))
+    drop-shadow(-2px -2px 0 var(--main-colorpurple))
+    drop-shadow(2px -2px 0 var(--main-colorpurple))
+    drop-shadow(-2px 2px 0 var(--main-colorpurple));
+  animation: breathe 2s ease-in infinite;
 }
+.chat_inputbox_bg {
+  background: linear-gradient(
+        135deg,
+        transparent 5px,
+        var(--main-brightpurple) 0
+      )
+      top left,
+    linear-gradient(-135deg, transparent 5px, var(--main-brightpurple) 0) top
+      right,
+    linear-gradient(-45deg, transparent 5px, var(--main-brightpurple) 0) bottom
+      right,
+    linear-gradient(45deg, transparent 5px, var(--main-brightpurple) 0) bottom
+      left;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  filter: drop-shadow(4px 4px 0 #bc9dff);
+}
+
+// 測試用
 .socket-layout {
   display: flex;
   flex-direction: column;
