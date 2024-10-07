@@ -1,8 +1,8 @@
 {
-  "name": "renovate-bookcamp",
+  "name": "bookcamp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://milu0925.github.io/renovate-bookcamp/",
+  "homepage": "https://bookcamp-sage.vercel.app/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
