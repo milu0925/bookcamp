@@ -63,7 +63,7 @@ export const AuthContext = ({ children }) => {
             email: "",
             birthday: "",
             phone: "",
-            address:"",
+            address: "",
           },
         });
         if (protectedRoutes.includes(router.pathname)) {
@@ -173,7 +173,9 @@ export const AuthContext = ({ children }) => {
   // line登陸
   const handleLineLogin = async (code) => {
     try {
-      const { data } = await axios.get(`${domain}/line/login?code=${code}`);
+      const { data } = await axios.get(`${domain}/line/login?code=${code}`, {
+        withCredentials: true,
+      });
       if (data.message === "success") {
         router.push(data.data);
       }
@@ -195,9 +197,8 @@ export const AuthContext = ({ children }) => {
     const { data } = await get_user();
     setPoint(data[0].point);
     setImg(data[0].u_img);
-    
   };
-console.log(img);
+  console.log(img);
 
   return (
     <CreateAuth.Provider
