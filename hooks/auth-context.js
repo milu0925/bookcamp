@@ -187,8 +187,8 @@ export const AuthContext = ({ children }) => {
           withCredentials: true,
         });
       }
-      if (data.message === "success") {
-        window.location.href = `${data.data}`;
+      if (data.data.message === "success") {
+        window.location.href = `${data.data.data}`;
       }
     } catch (error) {
       const errorMessage = error.response?.data?.server;
