@@ -183,6 +183,8 @@ export const AuthContext = ({ children }) => {
         withCredentials: true,
       });
 
+      console.log(data, "前端資料跳轉失敗WY!!");
+
       if (data.message === "success") {
         window.location.href = `${data.data}`;
       }
