@@ -166,30 +166,36 @@ export const AuthContext = ({ children }) => {
         router.push(data.data);
       }
     } catch (error) {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: error,
-      });
+      const errorMessage = error.response?.data?.server;
+      if (errorMessage) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: errorMessage,
+        });
+      }
     }
   };
   // line登陸
   const handleLineLogin = async (code) => {
     try {
-      const { data } = await axios.get(`${domain}/line/login?code=${code}`, {
-        withCredentials: true,
-      });
-      if (data.message === "success") {
-        router.push(data.data);
-      }
+      let url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=2006387080&redirect_uri=https://back-camp.up.railway.app/line/callback&state=隨機碼&scope=profile%20openid&nonce=隨機碼`;
+      router.push(url);
+      // const { data } = await axios.get(`${domain}/line/login?code=${code}`, {
+      //   withCredentials: true,
+      // });
+      // if (data.message === "success") {
+      //   router.push(data.data);
+      // }
     } catch (error) {
-      console.log();
-
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: error,
-      });
+      const errorMessage = error.response?.data?.server;
+      if (errorMessage) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: errorMessage,
+        });
+      }
     }
   };
 
