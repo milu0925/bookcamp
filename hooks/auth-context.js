@@ -179,16 +179,12 @@ export const AuthContext = ({ children }) => {
   // line登陸
   const handleLineLogin = async (code) => {
     try {
-      let data;
-      if (code === "signup") {
-        data = await axios.get(`${domain}/line/login?code=${code}`);
-      } else {
-        data = await axios.get(`${domain}/line/login?code=${code}`, {
-          withCredentials: true,
-        });
-      }
-      if (data.data.message === "success") {
-        router.push(data.data.data);
+      const { data } = await axios.get(`${domain}/line/login?code=${code}`, {
+        withCredentials: true,
+      });
+
+      if (data.message === "success") {
+        window.open(`${data.data}`, "_blank");
       }
     } catch (error) {
       const errorMessage = error.response?.data?.server;
