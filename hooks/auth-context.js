@@ -179,9 +179,7 @@ export const AuthContext = ({ children }) => {
   // line登陸
   const handleLineLogin = async (code) => {
     try {
-      const { data } = await axios.get(`${domain}/line/login?code=${code}`, {
-        withCredentials: true,
-      });
+      const { data } = await axios.get(`${domain}/line/login?code=${code}`);
       console.log(data, "line的資料");
 
       if (data.message === "success") {
