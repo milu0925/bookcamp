@@ -18,6 +18,7 @@ export default function UserLogin() {
     useAuth();
   const [user, setUser] = useState({ email: "", password: "" });
   const handleUserData = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
   };

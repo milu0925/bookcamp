@@ -5,6 +5,7 @@ import { user_verify_mail, user_password_update } from "@/hooks/call-api";
 export default function ForgetPasswordVerity() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const handleChange = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };

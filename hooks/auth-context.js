@@ -69,8 +69,6 @@ export const AuthContext = ({ children }) => {
         if (protectedRoutes.includes(router.pathname)) {
           router.push("/user/login");
         }
-      } else {
-        console.error(error);
       }
     }
   };
@@ -219,7 +217,6 @@ export const AuthContext = ({ children }) => {
     setPoint(data[0].point);
     setImg(data[0].u_img);
   };
-  console.log(img);
 
   return (
     <CreateAuth.Provider

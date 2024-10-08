@@ -25,6 +25,7 @@ export default function UserRegister() {
     address: "",
   });
   const handleUserData = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     // 限制手機長度
     const newValue =
