@@ -22,8 +22,10 @@ export const CartContext = ({ children }) => {
     }
   };
   useEffect(() => {
-    getdata();
-  }, [auth.isAuth]);
+    if (auth.isAuth) {
+      getdata();
+    }
+  }, [auth]);
   // 加入購物車
   const handleAddCart = async (datas) => {
     try {
