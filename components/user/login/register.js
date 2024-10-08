@@ -151,7 +151,7 @@ export default function UserRegister() {
     }
     try {
       const { data } = await axios.post(`${domain}/user/signup`, formData);
-      if (data.message === "success") {
+      if (data.state === "success") {
         Swal.fire({
           position: "center",
           icon: "success",

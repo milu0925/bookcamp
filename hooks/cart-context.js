@@ -14,7 +14,7 @@ export const CartContext = ({ children }) => {
       const { data } = await axios.get(`${domain}/cart/read`, {
         withCredentials: true,
       });
-      if (data.message === "success") {
+      if (data.state === "success") {
         setCart(data.data);
       }
     } catch (error) {
@@ -36,7 +36,7 @@ export const CartContext = ({ children }) => {
           withCredentials: true,
         });
 
-        if (data.message === "success") {
+        if (data.state === "success") {
           setCart(data.data);
           Swal.fire({
             position: "center",
@@ -94,7 +94,7 @@ export const CartContext = ({ children }) => {
             withCredentials: true,
           }
         );
-        if (data.message === "success") {
+        if (data.state === "success") {
           setCart(data.data);
         }
       } else {

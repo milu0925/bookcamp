@@ -45,14 +45,14 @@ export const AuthContext = ({ children }) => {
         withCredentials: true,
       });
 
-      if (data.message === "success") {
+      if (data.state === "success") {
         // 驗證成功，把資料寫入
         setAuth({ isAuth: true, user: data.user });
         setPoint(data.point);
       }
     } catch (error) {
       if (
-        error.response?.data.message === "未登入" &&
+        error.response?.data.state === "未登入" &&
         error.response?.status === 401
       ) {
         setAuth({
@@ -90,7 +90,7 @@ export const AuthContext = ({ children }) => {
         withCredentials: true,
       });
 
-      if (data.message === "success") {
+      if (data.state === "success") {
         await loginSuccess(data.token);
       }
     } catch (error) {
@@ -137,7 +137,7 @@ export const AuthContext = ({ children }) => {
           withCredentials: true,
         }
       );
-      if (data.message === "success") {
+      if (data.state === "success") {
         setAuth({
           isAuth: false,
           user: {
@@ -167,7 +167,7 @@ export const AuthContext = ({ children }) => {
           withCredentials: true,
         });
       }
-      if (data.data.message === "success") {
+      if (data.data.state === "success") {
         router.push(data.data.data);
       }
     } catch (error) {
@@ -192,7 +192,7 @@ export const AuthContext = ({ children }) => {
           withCredentials: true,
         });
       }
-      if (data.data.message === "success") {
+      if (data.data.state === "success") {
         router.push(data.data.data);
       }
     } catch (error) {

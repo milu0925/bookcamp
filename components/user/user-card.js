@@ -14,7 +14,7 @@ export default function UserCard() {
     formData.append("avatar", file);
     const data = await user_img_upload(formData);
 
-    if (data.message === "success") {
+    if (data.state === "success") {
       await handleUserData();
     }
   };

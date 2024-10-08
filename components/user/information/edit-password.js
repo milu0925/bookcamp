@@ -31,7 +31,7 @@ export default function EditPassword() {
     }
 
     const data = await user_password_update(formData);
-    if (data.message === "success") {
+    if (data.state === "success") {
       Swal.fire({
         position: "center",
         icon: "success",
@@ -39,7 +39,7 @@ export default function EditPassword() {
       }).then((r) => {
         handleLogout();
       });
-    } else if (data.message === "not found") {
+    } else if (data.state === "not found") {
       Swal.fire({
         position: "center",
         icon: "error",
@@ -109,9 +109,9 @@ export default function EditPassword() {
   const [message, setMessage] = useState("");
   const checkPassword = async () => {
     const data = await user_password_check(formData);
-    if (data.message === "success") {
+    if (data.state === "success") {
       setMessage(data.message);
-    } else if (data.message === "not found") {
+    } else if (data.state === "not found") {
       setMessage(data.message);
     }
   };

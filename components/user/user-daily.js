@@ -23,7 +23,7 @@ export default function UserDaily() {
     } else if (type === "check") {
       data = await check_daily();
     }
-    if (data.message === "success") {
+    if (data.state === "success") {
       setCheckDay(data.data);
       handleUserData();
       Swal.fire({
@@ -31,7 +31,7 @@ export default function UserDaily() {
         icon: "success",
         title: "簽到成功!",
       });
-    } else if (data.message === "fail") {
+    } else if (data.state === "fail") {
       Swal.fire({
         position: "center",
         icon: "warning",
