@@ -5,7 +5,6 @@ import { FaSearch } from "react-icons/fa";
 import { readGenreBook } from "@/hooks/call-api";
 
 export default function Navbar() {
- 
   //開啟下拉選單
   const [isHovered, setIsHovered] = useState(false);
   const handleMouseEnter = (linkName) => {
@@ -78,7 +77,10 @@ export default function Navbar() {
           <div className={style.slide_list_btn}>
             {bookdata.map((v) => (
               <div key={v.id} className={style.slide_list_link}>
-                <Link href={`/book?b_genre=${v.name}`}>{v.b_genre}{v.name}</Link>
+                <Link href={`/book?b_genre=${v.name}`}>
+                  {v.b_genre}
+                  {v.name}
+                </Link>
               </div>
             ))}
           </div>
@@ -109,9 +111,9 @@ export default function Navbar() {
           </div>
         </div>
         <div className={style.m_navbar_content}>
-          <Link href="#/">實體書籍</Link>
-          <Link href="#/">客服幫助</Link>
-          <Link href="#/">討論交流</Link>
+          <Link href="/book">實體書籍</Link>
+          <Link href="/forum">討論交流</Link>
+          <Link href="/milu">關於作者</Link>
         </div>
       </div>
     </>
