@@ -161,9 +161,16 @@ export const AuthContext = ({ children }) => {
   // google登陸
   const handleGoogleLogin = async (code) => {
     try {
-      const { data } = await axios.get(`${domain}/google/login?code=${code}`);
-      if (data.message === "success") {
-        router.push(data.data);
+      let data;
+      if (code === "signup") {
+        data = await axios.get(`${domain}/google/login?code=${code}`);
+      } else {
+        data = await axios.get(`${domain}/google/login?code=${code}`, {
+          withCredentials: true,
+        });
+      }
+      if (data.data.message === "success") {
+        router.push(data.data.data);
       }
     } catch (error) {
       const errorMessage = error.response?.data?.server;
@@ -188,7 +195,7 @@ export const AuthContext = ({ children }) => {
         });
       }
       if (data.data.message === "success") {
-        window.location.href = `${data.data.data}`;
+        router.push(data.data.data);
       }
     } catch (error) {
       const errorMessage = error.response?.data?.server;
