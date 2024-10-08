@@ -179,15 +179,16 @@ export const AuthContext = ({ children }) => {
   // line登陸
   const handleLineLogin = async (code) => {
     try {
-      const { data } = await axios.get(`${domain}/line/login?code=${code}`);
-      console.log(data, "line的資料");
-
-      if (data.message === "success") {
-        router.push(data.data);
-        // window.location.href = data.data;
+      let data;
+      if (code === "signup") {
+        data = await axios.get(`${domain}/line/login?code=${code}`);
       } else {
-        let url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=2006387080&redirect_uri=https://back-camp.up.railway.app/line/callback&state=隨機碼&scope=profile%20openid&nonce=隨機碼`;
-        router.push(url);
+        data = await axios.get(`${domain}/line/login?code=${code}`, {
+          withCredentials: true,
+        });
+      }
+      if (data.data.message === "success") {
+        router.push(data.data.data);
       }
     } catch (error) {
       const errorMessage = error.response?.data?.server;
