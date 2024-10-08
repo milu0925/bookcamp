@@ -1,21 +1,15 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import style from "./login.module.scss";
-
 import { FaFacebook } from "react-icons/fa";
 import { FaLine } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import axios from "axios";
 import Swal from "sweetalert2";
-import { useRouter } from "next/router";
 import { useAuth } from "@/hooks/auth-context";
 export default function UserLogin() {
-  const domain = process.env.NEXT_PUBLIC_DOMAIN;
   const [error, setError] = useState(false);
-  const router = useRouter();
-  const { setAuth, handleLogin, handleGoogleLogin, handleLineLogin } =
-    useAuth();
+  const { handleLogin, handleGoogleLogin, handleLineLogin } = useAuth();
   const [user, setUser] = useState({ email: "", password: "" });
   const handleUserData = (e) => {
     e.preventDefault();
@@ -58,7 +52,11 @@ export default function UserLogin() {
   };
   return (
     <div className={style.l_login}>
-      <div className={`${style.r_login} pixel-border-yellow bg-yellow`}>
+      <form
+        action="#"
+        method="POST"
+        className={`${style.r_login} pixel-border-yellow bg-yellow`}
+      >
         <div className={style.r_login_title}>
           <FaUser />
           <h4>會員登入</h4>
@@ -72,7 +70,7 @@ export default function UserLogin() {
             type="email"
             id="email"
             placeholder="電子郵件地址"
-            autocomplete="off"
+            autoComplete="off"
             name="email"
             value={user.email}
             onChange={handleUserData}
@@ -87,6 +85,7 @@ export default function UserLogin() {
             name="password"
             value={user.password}
             onChange={handleUserData}
+            autoComplete="current-password"
           />
           <Link href="/user/forget-password" className="font-sm ms-3">
             忘記密碼？
@@ -109,7 +108,7 @@ export default function UserLogin() {
           </Link>
         </div>
         <div>如登入，即代表同意本站隱私權政策和使用條款。</div>
-      </div>
+      </form>
       <div className={`${style.r_quick_login} pixel-border-black bg-black`}>
         <div className={style.quick_login_text}>快速登入</div>
         <div className={style.quick_login_logo}>

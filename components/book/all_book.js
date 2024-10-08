@@ -49,7 +49,7 @@ export default function AllBook() {
           <span>價格</span>
           <select
             className="pixel-border-black"
-            autocomplete="off"
+            autoComplete="off"
             onChange={(e) => {
               setTag(e.target.value);
             }}

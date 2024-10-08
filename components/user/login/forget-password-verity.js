@@ -42,7 +42,7 @@ export default function ForgetPasswordVerity() {
           <input
             type="email"
             id="email"
-            autocomplete="off"
+            autoComplete="off"
             name="email"
             onChange={handleChange}
           />
@@ -65,6 +65,7 @@ export default function ForgetPasswordVerity() {
             id="password"
             name="password"
             onChange={handleChange}
+            autoComplete="current-password"
           />
         </div>
         <div className={style.r_login_btn_group}>

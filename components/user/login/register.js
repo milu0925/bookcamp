@@ -181,7 +181,11 @@ export default function UserRegister() {
 
   return (
     <div className={style.l_login}>
-      <div className={`${style.r_login} pixel-border-yellow bg-yellow`}>
+      <form
+        action="#"
+        method="POST"
+        className={`${style.r_login} pixel-border-yellow bg-yellow`}
+      >
         <div className={style.r_login_title}>
           <FaUserPlus />
           <h4>加入會員</h4>
@@ -206,7 +210,7 @@ export default function UserRegister() {
             type="email"
             id="email"
             placeholder="電子郵件地址"
-            autocomplete="off"
+            autoComplete="off"
             name="email"
             value={formData.email}
             onChange={handleUserData}
@@ -227,6 +231,7 @@ export default function UserRegister() {
             name="password"
             value={formData.password}
             onChange={handleUserData}
+            autoComplete="current-password"
           />
         </div>
         <div className={style.prompt}>
@@ -234,16 +239,17 @@ export default function UserRegister() {
           <span>請填入5~20個字元以內的英文字母、數字。</span>
         </div>
         <div className={style.r_login_information}>
-          <label htmlFor="password">
+          <label htmlFor="password2">
             <span>*</span>確認密碼
           </label>
           <input
             type="password"
-            id="password"
+            id="password2"
             placeholder="密碼"
             name="passwordcheck"
             value={formData.passwordcheck}
             onChange={handleUserData}
+            autoComplete="current-password"
           />
         </div>
 
@@ -260,7 +266,7 @@ export default function UserRegister() {
               type="text"
               id="username"
               placeholder="姓名"
-              autocomplete="off"
+              autoComplete="off"
               name="name"
               value={formData.name}
               onChange={handleUserData}
@@ -333,7 +339,7 @@ export default function UserRegister() {
             <input
               type="number"
               id="phone"
-              autocomplete="off"
+              autoComplete="off"
               name="phone"
               max={10}
               value={formData.phone}
@@ -346,7 +352,7 @@ export default function UserRegister() {
           <input
             type="text"
             id="address"
-            autocomplete="off"
+            autoComplete="off"
             name="address"
             value={formData.address}
             onChange={handleUserData}
@@ -378,7 +384,7 @@ export default function UserRegister() {
         <div className={style.align}>
           已經是會員了嗎？<Link href="/user/login">登入</Link>。
         </div>
-      </div>
+      </form>
     </div>
   );
 }
