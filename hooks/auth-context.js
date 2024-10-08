@@ -184,7 +184,7 @@ export const AuthContext = ({ children }) => {
       });
 
       if (data.message === "success") {
-        window.open(`${data.data}`, "_blank");
+        window.location.href = `${data.data}`;
       }
     } catch (error) {
       const errorMessage = error.response?.data?.server;
