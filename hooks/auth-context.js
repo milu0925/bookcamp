@@ -179,12 +179,14 @@ export const AuthContext = ({ children }) => {
   // line登陸
   const handleLineLogin = async (code) => {
     try {
-      const { data } = await axios.get(`${domain}/line/login?code=${code}`, {
-        withCredentials: true,
-      });
-
-      console.log(data, "前端資料跳轉失敗WY!!");
-
+      let data;
+      if (code === "signup") {
+        data = await axios.get(`${domain}/line/login?code=${code}`);
+      } else {
+        data = await axios.get(`${domain}/line/login?code=${code}`, {
+          withCredentials: true,
+        });
+      }
       if (data.message === "success") {
         window.location.href = `${data.data}`;
       }
