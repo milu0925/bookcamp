@@ -179,14 +179,18 @@ export const AuthContext = ({ children }) => {
   // line登陸
   const handleLineLogin = async (code) => {
     try {
-      let url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=2006387080&redirect_uri=https://back-camp.up.railway.app/line/callback&state=隨機碼&scope=profile%20openid&nonce=隨機碼`;
-      router.push(url);
-      // const { data } = await axios.get(`${domain}/line/login?code=${code}`, {
-      //   withCredentials: true,
-      // });
-      // if (data.message === "success") {
-      //   router.push(data.data);
-      // }
+      const { data } = await axios.get(`${domain}/line/login?code=${code}`, {
+        withCredentials: true,
+      });
+      console.log(data, "line的資料");
+
+      if (data.message === "success") {
+        router.push(data.data);
+        // window.location.href = data.data;
+      } else {
+        let url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=2006387080&redirect_uri=https://back-camp.up.railway.app/line/callback&state=隨機碼&scope=profile%20openid&nonce=隨機碼`;
+        router.push(url);
+      }
     } catch (error) {
       const errorMessage = error.response?.data?.server;
       if (errorMessage) {
