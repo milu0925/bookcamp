@@ -96,11 +96,14 @@ export const AuthContext = ({ children }) => {
         await loginSuccess(data.token);
       }
     } catch (error) {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: error,
-      });
+      const errorMessage = error.response?.data?.server;
+      if (errorMessage) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: errorMessage,
+        });
+      }
     }
   };
   const loginSuccess = async (token) => {
@@ -180,6 +183,8 @@ export const AuthContext = ({ children }) => {
         router.push(data.data);
       }
     } catch (error) {
+      console.log();
+
       Swal.fire({
         position: "center",
         icon: "error",
