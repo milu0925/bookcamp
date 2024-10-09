@@ -29,7 +29,7 @@ export default function UserDaily() {
         icon: "success",
         title: "簽到成功!",
       });
-    } else if (data.state === "fail") {
+    } else if (data.state === "error") {
       Swal.fire({
         position: "center",
         icon: "warning",
