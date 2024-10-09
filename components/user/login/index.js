@@ -18,7 +18,8 @@ export default function UserLogin() {
   };
 
   // 快速登入
-  const handlequickData = () => {
+  const handlequickData = (e) => {
+    e.preventDefault();
     setUser({ email: "ff@gmail.com", password: "123456" });
   };
   // 檢查空格
