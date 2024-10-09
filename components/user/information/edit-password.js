@@ -39,7 +39,7 @@ export default function EditPassword() {
       }).then((r) => {
         handleLogout();
       });
-    } else if (data.state === "not found") {
+    } else if (data.state === "error") {
       Swal.fire({
         position: "center",
         icon: "error",

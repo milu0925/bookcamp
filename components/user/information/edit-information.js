@@ -41,8 +41,8 @@ export default function EditInformation() {
       cancelButtonText: "取消",
     }).then((result) => {
       if (result.isConfirmed) {
-        user_information_update(newFrom).then((v) => {
-          if (v.state === "success") {
+        user_information_update(newFrom).then((data) => {
+          if (data.state === "success") {
             handleLogout();
           }
         });
