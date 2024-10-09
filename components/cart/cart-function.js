@@ -20,14 +20,14 @@ export default function CartFunction({ order, setOrder }) {
 
     if (order.pay == 1) {
       const req = await checkout_linepay(order);
-      if (req?.message === "success") {
+      if (req?.state === "success") {
         setTimeout(() => {
           window.location.href = req.data.web;
         }, 1000);
       }
     } else if (order.pay == 2) {
       const req = await checkout(order);
-      if (req?.message === "success") {
+      if (req?.state === "success") {
         console.log(req.data);
 
         setTimeout(() => {

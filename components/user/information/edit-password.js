@@ -110,9 +110,9 @@ export default function EditPassword() {
   const checkPassword = async () => {
     const data = await user_password_check(formData);
     if (data.state === "success") {
-      setMessage(data.message);
-    } else if (data.state === "not found") {
-      setMessage(data.message);
+      setMessage(data.state);
+    } else if (data.state === "error") {
+      setMessage(data.state);
     }
   };
   return (

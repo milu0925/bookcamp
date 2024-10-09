@@ -113,7 +113,7 @@ export const AuthContext = ({ children }) => {
     // 假如未登入狀態下購物車有東西
     const cartitem = JSON.parse(sessionStorage.getItem("cart"));
     await pushInUserCartItems(cartitem).then((v) => {
-      if (v?.message === "success") {
+      if (v?.state === "success") {
         // 清除session資料
         sessionStorage.removeItem("cart");
       }

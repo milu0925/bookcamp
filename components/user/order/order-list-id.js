@@ -12,7 +12,7 @@ export default function OrderListID() {
   }, []);
   const getdata = async () => {
     const data = await read_one_order(id);
-    if (data?.message === "success") {
+    if (data?.state === "success") {
       setOrderdata(data.data.detail);
     }
   };

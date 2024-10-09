@@ -11,7 +11,7 @@ export default function OrderList() {
   }, []);
   const getdata = async () => {
     const data = await read_all_order();
-    if (data?.message === "success") {
+    if (data?.state === "success") {
       setOrderdata(data.data);
     }
   };

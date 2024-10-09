@@ -11,7 +11,7 @@ export default function CartFinish() {
   const [data, setData] = useState([]);
   const getdata = async (oid) => {
     const data = await read_one_order(Number(oid));
-    if (data?.message === "success") {
+    if (data?.state === "success") {
       setData(data.data);
     }
   };

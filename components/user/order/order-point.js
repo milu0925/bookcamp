@@ -9,7 +9,7 @@ export default function OrderPoint() {
   }, []);
   const getdata = async () => {
     const data = await user_point_list();
-    if (data?.message == "success") {
+    if (data?.state == "success") {
       setData(data.data);
     }
   };
