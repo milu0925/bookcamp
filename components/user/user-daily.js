@@ -16,8 +16,6 @@ export default function UserDaily() {
     let data;
     if (type === "get") {
       data = await get_daily();
-      console.log(data);
-
       setCheckDay(data.data);
       return;
     } else if (type === "check") {
