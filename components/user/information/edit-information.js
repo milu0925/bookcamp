@@ -42,7 +42,7 @@ export default function EditInformation() {
     }).then((result) => {
       if (result.isConfirmed) {
         user_information_update(newFrom).then((v) => {
-          if (v.message === "success") {
+          if (v.state === "success") {
             handleLogout();
           }
         });
