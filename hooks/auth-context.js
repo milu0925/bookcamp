@@ -80,7 +80,8 @@ export const AuthContext = ({ children }) => {
   };
 
   // 登入
-  const handleLogin = async (checkForm, user) => {
+  const handleLogin = async (e, checkForm, user) => {
+    e.preventDefault();
     if (!(await checkForm())) {
       return;
     }
@@ -157,7 +158,8 @@ export const AuthContext = ({ children }) => {
     }
   };
   // google登陸
-  const handleGoogleLogin = async (code) => {
+  const handleGoogleLogin = async (e, code) => {
+    e.preventDefault();
     try {
       let data;
       if (code === "signup") {
@@ -182,7 +184,8 @@ export const AuthContext = ({ children }) => {
     }
   };
   // line登陸
-  const handleLineLogin = async (code) => {
+  const handleLineLogin = async (e, code) => {
+    e.preventDefault();
     try {
       let data;
       if (code === "signup") {

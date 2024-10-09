@@ -98,8 +98,8 @@ export default function UserLogin() {
         <div className={style.r_login_btn_group}>
           <button
             className="pixel-border-purple bg-color-purple"
-            onClick={() => {
-              handleLogin(checkForm, user);
+            onClick={(e) => {
+              handleLogin(e, checkForm, user);
             }}
           >
             登入
@@ -114,13 +114,13 @@ export default function UserLogin() {
         <div className={style.quick_login_text}>快速登入</div>
         <div className={style.quick_login_logo}>
           <FaLine
-            onClick={() => {
-              handleLineLogin("login");
+            onClick={(e) => {
+              handleLineLogin(e, "login");
             }}
           />
           <FcGoogle
-            onClick={() => {
-              handleGoogleLogin("login");
+            onClick={(e) => {
+              handleGoogleLogin(e, "login");
             }}
           />
           <FaFacebook />
