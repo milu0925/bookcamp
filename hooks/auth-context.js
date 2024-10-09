@@ -44,6 +44,7 @@ export const AuthContext = ({ children }) => {
       const { data } = await axios.get(`${domain}/user/check-auth`, {
         withCredentials: true,
       });
+      console.log(data);
 
       if (data.state === "success") {
         // 驗證成功，把資料寫入

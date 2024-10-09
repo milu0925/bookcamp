@@ -109,11 +109,7 @@ export default function EditPassword() {
   const [message, setMessage] = useState("");
   const checkPassword = async () => {
     const data = await user_password_check(formData);
-    if (data.state === "success") {
-      setMessage(data.state);
-    } else if (data.state === "error") {
-      setMessage(data.state);
-    }
+    setMessage(data.state);
   };
   return (
     <div
