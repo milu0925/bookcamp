@@ -11,7 +11,7 @@ export const readbooks = async (datas, tag) => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 
@@ -24,7 +24,7 @@ export const pushInUserCartItems = async (datas) => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 讀取會員資料
@@ -35,7 +35,7 @@ export const get_user = async () => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 每日簽到檢查
@@ -46,7 +46,7 @@ export const get_daily = async () => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 每日簽到檢查
@@ -57,7 +57,7 @@ export const check_daily = async () => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 上傳會員圖片
@@ -68,7 +68,7 @@ export const user_img_upload = async (file) => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 更新會員資料
@@ -83,7 +83,7 @@ export const user_information_update = async (datas) => {
     );
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 檢查會員密碼
@@ -94,7 +94,7 @@ export const user_password_check = async (datas) => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 更新會員密碼
@@ -105,7 +105,7 @@ export const user_password_update = async (datas) => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 讀取會員點數清單
@@ -116,7 +116,7 @@ export const user_point_list = async () => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 驗證信
@@ -125,7 +125,7 @@ export const user_verify_mail = async (datas) => {
     const { data } = await axios.post(`${domain}/user/verify-mail`, datas);
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 
@@ -138,7 +138,7 @@ export const checkout = async (datas) => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 送出訂單-linepay結帳
@@ -151,7 +151,7 @@ export const checkout_linepay = async (datas) => {
 
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 送出訂單-藍新結帳
@@ -162,7 +162,7 @@ export const checkout_bluepay = async (datas) => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 
@@ -175,7 +175,7 @@ export const read_all_order = async () => {
     });
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
 // 讀取單一訂單資訊
@@ -190,6 +190,6 @@ export const read_one_order = async (datas) => {
     );
     return data;
   } catch (error) {
-    console.log(error);
+    return error.response?.data;
   }
 };
