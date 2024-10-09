@@ -52,7 +52,7 @@ export const AuthContext = ({ children }) => {
       }
     } catch (error) {
       if (
-        error.response?.data.state === "未登入" &&
+        error.response?.data.message === "未登入" &&
         error.response?.status === 401
       ) {
         setAuth({
@@ -95,7 +95,7 @@ export const AuthContext = ({ children }) => {
         await loginSuccess(data.token);
       }
     } catch (error) {
-      const errorMessage = error.response?.data?.server;
+      const errorMessage = error.response?.data?.message;
       if (errorMessage) {
         Swal.fire({
           position: "center",

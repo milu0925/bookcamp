@@ -192,13 +192,13 @@ export default function UserRegister() {
           <FaLine
             style={{ color: "#25bd39", cursor: "pointer" }}
             onClick={() => {
-              handleLineLogin("signup");
+              handleLineLogin(e, "signup");
             }}
           />
           <FcGoogle
             style={{ cursor: "pointer" }}
             onClick={() => {
-              handleGoogleLogin("signup");
+              handleGoogleLogin(e, "signup");
             }}
           />
         </div>
