@@ -39,62 +39,66 @@ export default function CartItem({ setOrder }) {
           closeContent ? style.open : style.close
         }`}
       >
-        {cart.map((v) => (
-          <div
-            className={`${style.cart_item_content_book} `}
-            key={v.c_id}
-            value={v.c_id}
-          >
-            <input
-              type="checkbox"
-              onChange={(e) => {
-                handleCheckbox(e, v);
-              }}
-            />
-            <img src={`/images/book/${v.b_img}`} />
-            <div className={style.cart_item_title}>
-              <div>{v.b_title}</div>
-              <div>{v.b_genre}</div>
-            </div>
-            <div className={style.cart_item_price}>
-              <MdAttachMoney />
-              {v.b_price}
-            </div>
-
-            <div className={style.cart_item_quantity}>
-              <button
-                className="pixel-border-add"
-                onClick={() => {
-                  handleAdjustCount(v, "sub");
-                }}
-              >
-                <MdHorizontalRule />
-              </button>
-              <input
-                type="number"
-                value={v.c_count}
-                className="input-box-all"
-                readOnly
-              />
-              <button
-                className="pixel-border-add"
-                onClick={() => {
-                  handleAdjustCount(v, "add");
-                }}
-              >
-                <IoMdAdd />
-              </button>
-            </div>
-            <button
-              className={style.cart_item_delete}
-              onClick={() => {
-                handleAdjustCount(v, "del");
-              }}
+        {closeContent ? (
+          cart.map((v) => (
+            <div
+              className={`${style.cart_item_content_book} `}
+              key={v.c_id}
+              value={v.c_id}
             >
-              <TbHttpDelete />
-            </button>
-          </div>
-        ))}
+              <input
+                type="checkbox"
+                onChange={(e) => {
+                  handleCheckbox(e, v);
+                }}
+              />
+              <img src={`/images/book/${v.b_img}`} />
+              <div className={style.cart_item_title}>
+                <div>{v.b_title}</div>
+                <div>{v.b_genre}</div>
+              </div>
+              <div className={style.cart_item_price}>
+                <MdAttachMoney />
+                {v.b_price}
+              </div>
+
+              <div className={style.cart_item_quantity}>
+                <button
+                  className="pixel-border-add"
+                  onClick={() => {
+                    handleAdjustCount(v, "sub");
+                  }}
+                >
+                  <MdHorizontalRule />
+                </button>
+                <input
+                  type="number"
+                  value={v.c_count}
+                  className="input-box-all"
+                  readOnly
+                />
+                <button
+                  className="pixel-border-add"
+                  onClick={() => {
+                    handleAdjustCount(v, "add");
+                  }}
+                >
+                  <IoMdAdd />
+                </button>
+              </div>
+              <button
+                className={style.cart_item_delete}
+                onClick={() => {
+                  handleAdjustCount(v, "del");
+                }}
+              >
+                <TbHttpDelete />
+              </button>
+            </div>
+          ))
+        ) : (
+          <div>購物車是空的！</div>
+        )}
       </div>
     </div>
   );
