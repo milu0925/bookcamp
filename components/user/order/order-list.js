@@ -73,7 +73,7 @@ export default function OrderList() {
                 >
                   查看明細
                 </button>
-                {v.pay === 1 && v.o_status === 0 ? (
+                {v.pay == 1 && v.o_status == 0 ? (
                   <button
                     className={style.go_pay}
                     onClick={() => {
