@@ -62,8 +62,8 @@ export default function OrderList() {
               <div>{v.o_id}</div>
               <div>{v.o_create_date}</div>
               <div>{v.o_total}</div>
-              <div>{v.pay === 1 ? "linepay" : "貨到付款"}</div>
-              <div>{v.o_status === 1 ? "已付款" : "未付款"}</div>
+              <div>{v.pay == 1 ? "linepay" : "貨到付款"}</div>
+              <div>{v.o_status == 1 ? "已付款" : "未付款"}</div>
               <div className={style.fn_group}>
                 <button
                   className={style.view_detail}
