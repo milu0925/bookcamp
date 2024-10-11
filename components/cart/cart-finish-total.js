@@ -67,7 +67,7 @@ export default function CartFinishTotal({ user }) {
         <hr />
         <div>
           <span>總計</span>
-          <span>{user.order ? user.order.total : 0}</span>
+          <span>{user.order ? user.order.o_total : 0}</span>
         </div>
       </div>
     </div>
