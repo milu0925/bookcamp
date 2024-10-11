@@ -110,7 +110,6 @@
     overflow: hidden;
     overflow-y: visible;
     background-color: var(--main-purple);
-    padding-block: 1rem;
     padding-inline: 1.5rem;
     box-shadow: -3px 0 0 var(--main-purple), 3px 0 0 var(--main-purple),
       0 3px 0 var(--main-purple), 3px 3px 0 var(--black),
@@ -119,13 +118,17 @@
     transition-property: all;
     transition-duration: 1s;
     transition-timing-function: ease-in-out;
-    transition-delay: 2s;
+    transition-delay: 0.5s;
     &.open {
       height: auto;
       opacity: 1;
+      padding-block: 1rem;
     }
     &.close {
       height: 0;
+      opacity: 0;
+      padding: 0;
+      box-shadow: none;
       div {
         pointer-events: none;
         display: none;
@@ -238,6 +241,11 @@
           }
         }
       }
+    }
+    .cart_empty {
+      color: var(--white);
+      text-align: center;
+      padding: 5px;
     }
   }
   &.w100 {

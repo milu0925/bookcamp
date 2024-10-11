@@ -39,7 +39,7 @@ export default function CartItem({ setOrder }) {
           closeContent ? style.open : style.close
         }`}
       >
-        {closeContent ? (
+        {cart.length > 0 ? (
           cart.map((v) => (
             <div
               className={`${style.cart_item_content_book} `}
@@ -97,7 +97,7 @@ export default function CartItem({ setOrder }) {
             </div>
           ))
         ) : (
-          <div>購物車是空的！</div>
+          <div className={style.cart_empty}>購物車是空的！</div>
         )}
       </div>
     </div>
