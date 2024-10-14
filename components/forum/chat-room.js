@@ -10,9 +10,9 @@ export default function ChatRoom({
   setMessage,
   chat,
   peoples,
-  visitor,
   handleSendMessage,
   handleKeyDown,
+  visitor,
 }) {
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
   const { auth, userData } = useAuth();
@@ -204,6 +204,7 @@ export default function ChatRoom({
         let sendMessage = {
           id: visitor,
           name: auth.isAuth ? userData?.u_name : "",
+
           content: base64String,
           type: "image",
         };
@@ -232,7 +233,10 @@ export default function ChatRoom({
                   {visitor === v.id ? null : !!v.img ? (
                     <img alt="user-avatar" src={`${domain}${v.img}`} />
                   ) : (
-                    <img alt="default" src={`${domain}/images/default.png`} />
+                    <img
+                      alt="default"
+                      src={`${domain}/images/user/default.png`}
+                    />
                   )}
                   <div className={style.name}>
                     {visitor == v.id ? "" : v.name}

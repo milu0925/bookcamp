@@ -5,7 +5,7 @@ import { io } from "socket.io-client";
 
 export default function Forum() {
   const domain = process.env.NEXT_PUBLIC_SOCKET;
-  const { auth, img } = useAuth();
+  const { auth, userData } = useAuth();
   const [socket, setSocket] = useState(); //socket主連線
   const [chat, setChat] = useState([]); // 所有內容 (打印出來的畫面)
   const [message, setMessage] = useState(""); // 我發的一條訊息
@@ -15,12 +15,15 @@ export default function Forum() {
     const visit = Math.floor(100000 + Math.random() * 900000); // 給進入頁面的人一組亂數序號
     setVisitor(visit);
   }, []);
+  console.log(auth.isAuth);
+  console.log(userData);
+
   //傳送訊息
   const handleSendMessage = () => {
     let sendMessage = {
       id: visitor,
-      name: auth.user.name,
-      img: auth.isAuth ? img : "",
+      name: auth.isAuth ? userData?.u_name : "",
+      img: auth.isAuth ? userData?.u_img : "",
       content: message,
     };
     socket.emit("message", sendMessage);
@@ -60,7 +63,7 @@ export default function Forum() {
 
   return (
     <ChatRoom
-    handleKeyDown={handleKeyDown}
+      handleKeyDown={handleKeyDown}
       socket={socket}
       message={message}
       setMessage={setMessage}
