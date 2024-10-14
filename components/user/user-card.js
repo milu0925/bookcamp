@@ -5,7 +5,7 @@ import { FaCamera } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa";
 import { user_img_upload } from "@/hooks/call-api";
 export default function UserCard() {
-  const { auth, point, img, handleUserData } = useAuth();
+  const { auth, userData, getUserData } = useAuth();
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
   // 上傳圖片
   const handleFile = async (e) => {
@@ -13,14 +13,10 @@ export default function UserCard() {
     const formData = new FormData();
     formData.append("avatar", file);
     const data = await user_img_upload(formData);
-
     if (data.state === "success") {
-      await handleUserData();
+      getUserData();
     }
   };
-  useEffect(() => {
-    handleUserData();
-  }, []);
 
   return (
     <div className={`${style.col_user_card}`}>
@@ -28,7 +24,10 @@ export default function UserCard() {
       <div className={`${style.user_card} bg-color-purple pixel-border-purple`}>
         <div className={style.user_card_avatar}>
           <div className={style.user_card_avatar_block}>
-            <img alt="user-avatar" src={`${domain}${img ? img : ""}`} />
+            <img
+              alt="user-avatar"
+              src={`${domain}${auth.isAuth ? userData?.u_img : ""}`}
+            />
             <input
               type="file"
               id="img-file"
@@ -45,11 +44,11 @@ export default function UserCard() {
           <div className={style.user_card_dark_block}>
             <div>
               <div>會員名稱</div>
-              <span>{auth.isAuth ? auth.user.name : ""}</span>
+              <span>{auth.isAuth ? userData?.u_name : "無"}</span>
             </div>
             <div>
               <div>可用點數</div>
-              <span>{point ? point : 0}</span>
+              <span>{auth.isAuth ? userData?.point : 0}</span>
             </div>
           </div>
         </div>
@@ -62,19 +61,19 @@ export default function UserCard() {
             <div>
               <div>
                 <div>生日</div>
-                <span>{auth.isAuth ? auth.user.birthday : ""}</span>
+                <span>{auth.isAuth ? userData?.u_birthday : "無"}</span>
               </div>
               <div>
                 <div>電話</div>
-                <span>{auth.isAuth ? auth.user.phone : ""}</span>
+                <span>{auth.isAuth ? userData?.u_phone : "無"}</span>
               </div>
               <div>
                 <div>信箱</div>
-                <span>{auth.isAuth ? auth.user.email : ""}</span>
+                <span>{auth.isAuth ? userData?.email : "無"}</span>
               </div>
               <div>
                 <div>收貨地址</div>
-                <span>{auth.isAuth ? auth.user.address : ""}</span>
+                <span>{auth.isAuth ? userData?.u_address : "無"}</span>
               </div>
             </div>
           </div>

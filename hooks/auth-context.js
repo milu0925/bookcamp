@@ -9,23 +9,10 @@ export const CreateAuth = createContext(null);
 export const AuthContext = ({ children }) => {
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
   const router = useRouter();
-
-  // 會員資訊
-  const [auth, setAuth] = useState({
-    isAuth: false,
-    user: {
-      id: 0,
-      name: "",
-      email: "",
-      avatar: "",
-      birthday: "",
-      phone: "",
-    },
-  });
-  // 會員點數
-  const [point, setPoint] = useState(0);
-  // 會員圖片
-  const [img, setImg] = useState("");
+  // 會員是否登入判斷
+  const [auth, setAuth] = useState({ isAuth: false });
+  // 會員資料
+  const [userData, setUserData] = useState({});
 
   // 隱私頁面路由，未登入時會，檢查後跳轉至登入頁
   const protectedRoutes = [
@@ -46,39 +33,48 @@ export const AuthContext = ({ children }) => {
       });
       if (data.state === "success") {
         // 驗證成功，把資料寫入
-        setAuth({ isAuth: true, user: data.user });
-        setPoint(data.point);
+        setAuth({ isAuth: true });
+        getUserData();
+      } else {
+        if (protectedRoutes.includes(router.pathname)) {
+          router.push("/user/login");
+        }
       }
     } catch (error) {
       if (
         error.response?.data.message === "未登入" &&
         error.response?.status === 401
       ) {
-        setAuth({
-          isAuth: false,
-          user: {
-            id: 0,
-            name: "",
-            email: "",
-            birthday: "",
-            phone: "",
-            address: "",
-          },
-        });
         if (protectedRoutes.includes(router.pathname)) {
           router.push("/user/login");
         }
       }
     }
   };
-  // 轉譯JWT
-  const parseJwt = (token) => {
-    const base64Payload = token.split(".")[1];
-    const payload = Buffer.from(base64Payload, "base64");
-    return JSON.parse(payload.toString());
-  };
 
-  // 登入
+  const loginSuccess = async (token) => {
+    if (token) {
+      await getUserData();
+      setAuth({ isAuth: true });
+      // 假如未登入狀態下購物車有東西
+      const cartitem = JSON.parse(sessionStorage.getItem("cart"));
+      await pushInUserCartItems(cartitem).then((v) => {
+        if (v?.state === "success") {
+          // 清除session資料
+          sessionStorage.removeItem("cart");
+        }
+      });
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "登入成功，即將導向至首頁。",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+      router.push("/");
+    }
+  };
+  // 一般登入
   const handleLogin = async (e, checkForm, user) => {
     e.preventDefault();
     if (!(await checkForm())) {
@@ -89,7 +85,6 @@ export const AuthContext = ({ children }) => {
       const { data } = await axios.post(`${domain}/user/login`, user, {
         withCredentials: true,
       });
-
       if (data.state === "success") {
         await loginSuccess(data.token);
       }
@@ -104,59 +99,7 @@ export const AuthContext = ({ children }) => {
       }
     }
   };
-  const loginSuccess = async (token) => {
-    setAuth({
-      isAuth: true,
-      user: await parseJwt(token),
-    });
-    // 假如未登入狀態下購物車有東西
-    const cartitem = JSON.parse(sessionStorage.getItem("cart"));
-    await pushInUserCartItems(cartitem).then((v) => {
-      if (v?.state === "success") {
-        // 清除session資料
-        sessionStorage.removeItem("cart");
-      }
-    });
-
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "登入成功，即將導向至首頁。",
-      showConfirmButton: false,
-      timer: 1000,
-    });
-    router.push("/");
-  };
-  // 登出
-  const handleLogout = async () => {
-    try {
-      const { data } = await axios.post(
-        `${domain}/user/logout`,
-        {},
-        {
-          withCredentials: true,
-        }
-      );
-      if (data.state === "success") {
-        setAuth({
-          isAuth: false,
-          user: {
-            id: 0,
-            name: "",
-            email: "",
-            avatar: "",
-            birthday: "",
-            phone: "",
-          },
-        });
-        sessionStorage.removeItem("cart");
-      }
-      router.push("/");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  // google登陸
+  // google登入
   const handleGoogleLogin = async (e, code) => {
     e.preventDefault();
     try {
@@ -172,7 +115,7 @@ export const AuthContext = ({ children }) => {
         router.push(data.data.data);
       }
     } catch (error) {
-      const errorMessage = error.response?.data?.server;
+      const errorMessage = error.response?.data?.message;
       if (errorMessage) {
         Swal.fire({
           position: "center",
@@ -182,7 +125,7 @@ export const AuthContext = ({ children }) => {
       }
     }
   };
-  // line登陸
+  // line登入
   const handleLineLogin = async (e, code) => {
     e.preventDefault();
     try {
@@ -198,7 +141,7 @@ export const AuthContext = ({ children }) => {
         router.push(data.data.data);
       }
     } catch (error) {
-      const errorMessage = error.response?.data?.server;
+      const errorMessage = error.response?.data?.message;
       if (errorMessage) {
         Swal.fire({
           position: "center",
@@ -208,32 +151,50 @@ export const AuthContext = ({ children }) => {
       }
     }
   };
+  // 登出
+  const handleLogout = async () => {
+    try {
+      const { data } = await axios.post(
+        `${domain}/user/logout`,
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      if (data.state === "success") {
+        setAuth({ isAuth: false });
+        setUserData({});
+        sessionStorage.removeItem("cart");
+        router.push("/");
+      }
+    } catch (error) {
+      console.log(error);
+      router.push("/");
+    }
+  };
+  // 存會員資料
+  const getUserData = async () => {
+    const { data } = await get_user();
+    setUserData(data);
+  };
 
   // didMount(初次渲染)後，向伺服器要求檢查會員是否登入中
   useEffect(() => {
     checkAuth();
   }, [router.isReady, router.pathname]);
-  // 重新取得會員資料
-  const handleUserData = async () => {
-    const { data } = await get_user();
-    setPoint(data[0].point);
-    setImg(data[0].u_img);
-  };
 
   return (
     <CreateAuth.Provider
       value={{
-        img,
-        point,
-        setPoint,
         auth,
         setAuth,
+        userData,
         handleLogin,
         handleLogout,
-        handleUserData,
         handleGoogleLogin,
         handleLineLogin,
         loginSuccess,
+        getUserData,
       }}
     >
       {children}

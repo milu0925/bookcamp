@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useRouter } from "next/router";
 import { useAuth } from "./auth-context";
 export const CreateCart = createContext([]);
 
@@ -8,6 +9,7 @@ export const CartContext = ({ children }) => {
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
   const { auth } = useAuth();
   const [cart, setCart] = useState([]);
+  const router = useRouter();
   // 取得購物車資訊
   const getdata = async () => {
     try {
@@ -18,14 +20,18 @@ export const CartContext = ({ children }) => {
         setCart(data.data);
       }
     } catch (error) {
-      console.log(error.response);
+      console.log(error.response, "購物車這是啥");
     }
   };
   useEffect(() => {
-    if (auth.isAuth) {
+    if (auth.isAuth === true && !sessionStorage.getItem("cart")) {
       getdata();
     }
-  }, [auth]);
+    // 會員登出時清除購物資訊(看Session是否為空)
+    if (auth.isAuth === false && !sessionStorage.getItem("cart")) {
+      setCart([]);
+    }
+  }, [router.isReady, router.pathname]);
   // 加入購物車
   const handleAddCart = async (datas) => {
     try {

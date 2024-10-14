@@ -6,7 +6,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import { useCart } from "@/hooks/cart-context";
 
 export default function Header() {
-  const { auth, handleLogout } = useAuth();
+  const { auth, userData, handleLogout } = useAuth();
   const { cart } = useCart();
 
   // 登入按鈕滑入顯示
@@ -50,14 +50,14 @@ export default function Header() {
             </Link>
           </div>
           <div className={style.member}>
-            {auth.isAuth === true ? (
+            {auth.isAuth ? (
               <Link
                 href="/user"
                 className={`${style.header_btn_login} pixel-border-yellow bg-yellow`}
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                歡迎,{auth.user.name}
+                歡迎,{auth.isAuth ? userData?.u_name : "未登入"}
               </Link>
             ) : (
               <Link

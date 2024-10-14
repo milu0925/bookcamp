@@ -4,7 +4,7 @@ import { MdAttachMoney } from "react-icons/md";
 import { FaCaretUp, FaCaretDown } from "react-icons/fa";
 
 export default function CartFinishItem({ book }) {
-  const [closeContent, setCloseContent] = useState(false);
+  const [closeContent, setCloseContent] = useState(true);
 
   return (
     <div className={`${style.col_cart_item} ${style.w100}`}>

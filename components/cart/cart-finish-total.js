@@ -3,7 +3,7 @@ import style from "./cart.module.scss";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { useAuth } from "@/hooks/auth-context";
 export default function CartFinishTotal({ user }) {
-  const { auth } = useAuth();
+  const { auth, userData } = useAuth();
 
   // 計算小計
   const [subtotal, setSubtotal] = useState(0);
@@ -21,15 +21,15 @@ export default function CartFinishTotal({ user }) {
       <div className={style.col_cart_user}>
         <div>
           <span>購買人</span>
-          <span>{auth.isAuth ? auth.user.name : ""}</span>
+          <span>{auth.isAuth ? userData?.u_name : ""}</span>
         </div>
         <div>
           <span>電話</span>
-          <span>{auth.isAuth ? auth.user.phone : ""}</span>
+          <span>{auth.isAuth ? userData?.u_phone : ""}</span>
         </div>
         <div>
           <span>地址</span>
-          <span>{auth.isAuth ? auth.user?.address : ""}</span>
+          <span>{auth.isAuth ? userData?.u_address : ""}</span>
         </div>
       </div>
       <div className={style.col_cart_total_finish}>

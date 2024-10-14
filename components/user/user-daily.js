@@ -5,13 +5,14 @@ import { FaRegQuestionCircle } from "react-icons/fa";
 import { FaRegCheckCircle } from "react-icons/fa";
 import UserDailyCheckin from "./user-daily-checkin";
 import { FaSackDollar } from "react-icons/fa6";
-import { check_daily, get_daily } from "@/hooks/call-api";
+import { check_daily, get_daily, get_user } from "@/hooks/call-api";
 import Swal from "sweetalert2";
 import { useAuth } from "@/hooks/auth-context";
+
 export default function UserDaily() {
   // 抓到這個月的所有簽到資訊
   const [checkDay, setCheckDay] = useState([]);
-  const { handleUserData } = useAuth();
+  const { getUserData } = useAuth();
   const checkdata = async (type) => {
     let data;
     if (type === "get") {
@@ -23,7 +24,7 @@ export default function UserDaily() {
     }
     if (data.state === "success") {
       setCheckDay(data.data);
-      handleUserData();
+      getUserData();
       Swal.fire({
         position: "center",
         icon: "success",

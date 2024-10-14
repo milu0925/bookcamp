@@ -10,32 +10,31 @@ import { MdBoy, MdGirl } from "react-icons/md";
 import Link from "next/link";
 import { user_information_update } from "@/hooks/call-api";
 import Swal from "sweetalert2";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 export default function EditInformation() {
-  const { auth, handleLogout } = useAuth();
+  const { auth, userData, getUserData } = useAuth();
   const [newFrom, setNewFrom] = useState({});
-  const router = useRouter();
 
   // 寫入性別
   useEffect(() => {
-    if (auth.user.gender == "女") {
-      setNewFrom((prev) => ({ ...prev, gender: "女" }));
-    } else if (auth.user.gender == "男") {
-      setNewFrom((prev) => ({ ...prev, gender: "男" }));
+    if (userData?.u_gender == "女") {
+      setNewFrom((prev) => ({ ...prev, u_gender: "女" }));
+    } else if (userData?.u_gender == "男") {
+      setNewFrom((prev) => ({ ...prev, u_gender: "男" }));
     }
-  }, [auth.user]);
+  }, [auth.isAuth]);
   // 寫入
   const handleWriteInformation = (e) => {
     let { name, value } = e.target;
     setNewFrom((prev) => ({ ...prev, [name]: value }));
   };
   // 確認變更
+  const router = useRouter();
   const handleSave = () => {
     Swal.fire({
       position: "center",
       icon: "warning",
       title: "確認修改資料嗎?",
-      text: "確認後會請您重新登入。",
       showCancelButton: true,
       confirmButtonText: "確認",
       cancelButtonText: "取消",
@@ -43,7 +42,8 @@ export default function EditInformation() {
       if (result.isConfirmed) {
         user_information_update(newFrom).then((data) => {
           if (data.state === "success") {
-            handleLogout();
+            getUserData();
+            router.push("/user");
           }
         });
       }
@@ -71,7 +71,7 @@ export default function EditInformation() {
           </label>
           <div>
             <input
-              defaultValue={auth.isAuth ? auth.user.email : ""}
+              defaultValue={auth.isAuth ? userData.email : ""}
               name="email"
               onChange={handleWriteInformation}
             />
@@ -86,8 +86,8 @@ export default function EditInformation() {
           <div>
             <input
               id="name"
-              defaultValue={auth.isAuth ? auth.user.name : ""}
-              name="name"
+              defaultValue={auth.isAuth ? userData?.u_name : ""}
+              name="u_name"
               onChange={handleWriteInformation}
             />
           </div>
@@ -101,29 +101,29 @@ export default function EditInformation() {
           <div>
             <input
               id="male"
-              name="gender"
+              name="u_gender"
               value="男"
               type="radio"
               onChange={handleWriteInformation}
-              checked={newFrom.gender == "男"}
+              checked={newFrom.u_gender == "男"}
             />
             <label
               htmlFor="male"
-              className={newFrom.gender == "男" ? style.active : ""}
+              className={newFrom.u_gender == "男" ? style.active : ""}
             >
               <MdBoy />男
             </label>
             <input
               id="female"
-              name="gender"
+              name="u_gender"
               value="女"
               type="radio"
               onChange={handleWriteInformation}
-              checked={newFrom.gender == "女"}
+              checked={newFrom.u_gender == "女"}
             />
             <label
               htmlFor="female"
-              className={newFrom.gender == "女" ? style.active : ""}
+              className={newFrom.u_gender == "女" ? style.active : ""}
             >
               <MdGirl />女
             </label>
@@ -139,8 +139,8 @@ export default function EditInformation() {
             <input
               id="birthday"
               type="date"
-              defaultValue={auth.isAuth ? auth.user.birthday : ""}
-              name="birthday"
+              defaultValue={auth.isAuth ? userData?.u_birthday : ""}
+              name="u_birthday"
               onChange={handleWriteInformation}
             />
           </div>
@@ -155,10 +155,10 @@ export default function EditInformation() {
             <input
               id="phone"
               type="number"
-              defaultValue={auth.isAuth ? auth.user.phone : ""}
+              defaultValue={auth.isAuth ? userData?.u_phone : ""}
               pattern="\d{9}"
               maxLength="9"
-              name="phone"
+              name="u_phone"
               onChange={handleWriteInformation}
             />
           </div>
@@ -173,8 +173,8 @@ export default function EditInformation() {
             <input
               id="address"
               type="text"
-              defaultValue={auth.isAuth ? auth.user.address : ""}
-              name="address"
+              defaultValue={auth.isAuth ? userData?.u_address : ""}
+              name="u_address"
               onChange={handleWriteInformation}
             />
           </div>

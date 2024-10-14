@@ -15,7 +15,7 @@ export default function ChatRoom({
   handleKeyDown,
 }) {
   const domain = process.env.NEXT_PUBLIC_DOMAIN;
-  const { auth } = useAuth();
+  const { auth, userData } = useAuth();
   // 表情設定
   const [showEmoji, setShowEmoji] = useState(false);
   const emojis = [
@@ -203,7 +203,7 @@ export default function ChatRoom({
         const base64String = reader.result; // 取得 base64 字串
         let sendMessage = {
           id: visitor,
-          name: auth.user.name,
+          name: auth.isAuth ? userData?.u_name : "",
           content: base64String,
           type: "image",
         };

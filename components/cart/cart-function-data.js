@@ -5,7 +5,7 @@ import { FaCommentDollar } from "react-icons/fa6";
 import { useAuth } from "@/hooks/auth-context";
 export default function CartData({ setOrder }) {
   const [chosen, setChosen] = useState(0);
-  const { auth } = useAuth();
+  const { auth, userData } = useAuth();
   useEffect(() => {
     if (chosen !== 0) {
       setOrder((prev) => ({ ...prev, pay: chosen }));
@@ -22,15 +22,15 @@ export default function CartData({ setOrder }) {
         <div className={style.cart_data_user}>
           <div>
             <span>購買人</span>
-            <span>{auth ? auth.user.name : ""}</span>
+            <span>{auth.isAuth ? userData?.u_name : ""}</span>
           </div>
           <div>
             <span>電話</span>
-            <span>{auth ? auth.user.phone : ""}</span>
+            <span>{auth.isAuth ? userData?.u_phone : ""}</span>
           </div>
           <div>
             <span>地址</span>
-            <span>{auth ? auth.user.address : ""}</span>
+            <span>{auth.isAuth ? userData?.u_address : ""}</span>
           </div>
         </div>
       </div>

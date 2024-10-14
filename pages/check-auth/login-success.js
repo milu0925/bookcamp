@@ -4,7 +4,7 @@ import { useAuth } from "@/hooks/auth-context";
 export default function LoginSuccess() {
   const router = useRouter();
   const { token } = router.query;
-  const { loginSuccess } = useAuth();
+  const { loginSuccess } = useAuth(token);
   useEffect(() => {
     if (token) {
       loginSuccess(token);
