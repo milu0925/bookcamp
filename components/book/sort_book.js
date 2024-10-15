@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import style from "./book.module.scss";
 import { MdOutlineMenuBook } from "react-icons/md";
@@ -17,6 +17,9 @@ export default function SortBook() {
     { id: 12, name: "電腦資訊" },
     { id: 13, name: "其他" },
   ];
+  // 選擇書籍分類時轉換
+  const [active, setactive] = useState("");
+
   return (
     <div className={style.l_sort_book}>
       <div className={style.r_sort_book_title}>
@@ -26,8 +29,21 @@ export default function SortBook() {
       <div className={style.r_sort_book_content}>
         <ul>
           {bookdata.map((v, i) => (
-            <li className={style.r_sort_book_btn} key={v.id} data-id={v.id}>
-              <Link href={`/book?b_genre=${v.name}`}>{v.name}</Link>
+            <li
+              className={`${style.r_sort_book_btn} ${
+                active == v.id ? style.active_btn : ""
+              }`}
+              key={v.id}
+              data-id={v.id}
+            >
+              <Link
+                href={`/book?b_genre=${v.name}`}
+                onClick={() => {
+                  setactive(v.id);
+                }}
+              >
+                {v.name}
+              </Link>
             </li>
           ))}
         </ul>

@@ -47,7 +47,7 @@
       border-width: 0 0 1px 0;
       border-style: dashed;
 
-      &:hover {
+      &.active_btn {
         border: none;
         font-weight: bold;
         border-radius: 5px;
@@ -66,6 +66,59 @@
         color: var(--white);
         display: flex;
         justify-content: center;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .l_sort_book {
+    width: calc(100% - 12px);
+    margin: auto;
+    background-color: transparent;
+    box-shadow: 3px 0 5px var(--main-purple), 0 3px 5px var(--main-purple),
+      0 -3px 5px var(--main-purple), -3px 0 5px var(--main-purple),
+      0 -6px 0 var(--black), 0 6px 0 var(--black), 6px 0 0 var(--black),
+      -6px 0 0 var(--black), 0 0 0 3px var(--black);
+    .r_sort_book_title {
+      padding: 6px;
+      font-size: 16px;
+      font-family: "zpix";
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      display: none;
+      svg {
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+      }
+    }
+    .r_sort_book_content {
+      white-space: nowrap;
+      font-size: 20px;
+      width: 100%;
+      padding: 0 0 0 10px;
+      margin-right: 1rem;
+      &::-webkit-scrollbar {
+        display: none; /* 隱藏 Chrome 和 Safari 中的滾動條 */
+      }
+
+      ul {
+        overflow-y: scroll; /* 垂直滾動條 */
+        overflow-x: auto; /* 水平可以滾動，但隱藏滾動條 */
+        scrollbar-width: none; /* 隱藏 Firefox 中的滾動條 */
+        display: flex;
+        margin: 5px 20px;
+      }
+      li {
+        padding-inline: 1rem;
+      }
+      .r_sort_book_btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        width: 200px;
+        border: none;
       }
     }
   }
@@ -149,6 +202,40 @@
   }
   .r_book_pagination {
     width: 100%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .l_all_book {
+    width: 100%;
+    margin: 0;
+    .r_function {
+      flex-wrap: wrap;
+      padding: 0;
+      white-space: nowrap;
+      > div {
+        display: flex;
+        align-items: center;
+        height: 55px;
+        width: 250px;
+        padding-inline: 1.2rem;
+      }
+      > div:nth-child(2) span {
+        padding-right: 2rem;
+      }
+    }
+    .r_books {
+      width: 100%;
+
+      > div {
+        width: 250px;
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+      }
+      .r_book {
+        width: 100%;
+      }
+    }
   }
 }
 

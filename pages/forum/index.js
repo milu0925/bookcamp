@@ -15,8 +15,6 @@ export default function Forum() {
     const visit = Math.floor(100000 + Math.random() * 900000); // 給進入頁面的人一組亂數序號
     setVisitor(visit);
   }, []);
-  console.log(auth.isAuth);
-  console.log(userData);
 
   //傳送訊息
   const handleSendMessage = () => {

@@ -56,6 +56,7 @@ export default function UserAside() {
             </li>
           </ul>
         </div>
+
         <button
           className={`${style.collapse_btn} ${
             isOpen.id === 2 && isOpen.status && style.active
@@ -83,6 +84,7 @@ export default function UserAside() {
             </ul>
           </div>
         </div>
+
         <button
           className={`${style.collapse_btn} ${
             isOpen.id === 3 && isOpen.status && style.active

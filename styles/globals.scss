@@ -123,6 +123,16 @@ body {
   }
 }
 
+@media screen and (max-width: 1200px) {
+  .l-book {
+    display: block;
+    margin: 0;
+  }
+  .l-user {
+    flex-direction: column;
+  }
+}
+
 /* 商品加入購物車按鈕 */
 .price-area {
   display: flex;

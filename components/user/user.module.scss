@@ -732,3 +732,39 @@
     transform: translateY(-2px);
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .col_user_aside {
+    max-width: 100%;
+    overflow: hidden;
+    filter: none;
+    .user_aside_title,
+    .user_aside_footer {
+      display: none;
+    }
+    .user_aside_content {
+      flex-direction: row;
+      gap: 10px;
+      min-height: auto;
+      position: relative;
+      .collapse_btn {
+        height: 35px;
+        margin-bottom: 0;
+        filter: none;
+        justify-content: center;
+        svg {
+          display: none;
+        }
+      }
+      .collapse_btn_child {
+        position: absolute;
+        top: 55px;
+        left: 0;
+      }
+    }
+  }
+  .col_user_card,
+  .col_user_daily {
+    width: 90%;
+  }
+}

@@ -259,6 +259,10 @@
       width: 70%;
       min-width: auto;
       padding: 20px 30px;
+      .col_information {
+        // display: flex;
+        flex-direction: column;
+      }
       .r_login_btn_group {
         justify-content: space-between;
         white-space: nowrap;
