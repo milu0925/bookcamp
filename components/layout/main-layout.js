@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "@/components/header";
-import Navbar from "@/components/navbar";
+import Header from "@/components/st/header";
+import Navbar from "@/components/st/navbar";
 export default function MainLayout({ children }) {
   return (
     <>
@@ -9,6 +9,9 @@ export default function MainLayout({ children }) {
         <Navbar />
       </header>
       <main>{children}</main>
+      <video autoPlay muted loop id="bgVideo">
+        <source src="/images/bg1.mp4" type="video/mp4" />
+      </video>
     </>
   );
 }

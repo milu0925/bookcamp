@@ -293,6 +293,12 @@ body {
   filter: drop-shadow(4px 4px 0 #bc9dff);
 }
 
+/* 隱藏slider 上一頁和下一頁按鈕 */
+.slick-prev,
+.slick-next {
+  display: none !important;
+}
+
 // 測試用
 .socket-layout {
   display: flex;
