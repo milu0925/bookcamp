@@ -1,16 +1,16 @@
 .navbar {
   width: 220px;
-  height: 100vh;
   border-right: 2px solid var(--m-gray);
   border-top: none;
   border-left: none;
   border-bottom: none;
   padding: 12px;
+  display: flex;
+  flex-direction: column;
   .logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 16px;
     padding-bottom: 12px;
     color: var(--m-green);
     font-size: 18px;
@@ -32,5 +32,17 @@
     li {
       padding: 6px;
     }
+  }
+  svg {
+    padding-right: 6px;
+  }
+
+  .logout_btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px 6px;
+    color: var(--white);
+    background: var(--m-green);
+    margin-top: auto;
   }
 }

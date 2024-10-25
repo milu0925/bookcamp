@@ -79,6 +79,8 @@ export default function MNavbar() {
           <Link href="#">討論區管理</Link>
         </li>
       </ul>
+
+      <button className={style.logout_btn}>登出</button>
     </div>
   );
 }
