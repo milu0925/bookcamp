@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "@/components/st/header";
 import Navbar from "@/components/st/navbar";
+import Loading from "@/components/loading/loading";
 export default function MainLayout({ children }) {
   return (
     <>

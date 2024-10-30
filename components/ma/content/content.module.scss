@@ -1,0 +1,15 @@
+.l_content {
+  width: 100%;
+  margin: 3rem 4rem 2rem 1rem;
+  padding: 2.5rem;
+  background: var(--m-blue);
+  border-radius: 16px;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  .col_checkinQuickly {
+    width: 30vw;
+    height: 200px;
+    background: white;
+  }
+}

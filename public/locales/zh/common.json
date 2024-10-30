@@ -1,0 +1,21 @@
+{
+    "user_data": "個人資料",
+    "user_salary": "薪資單",
+    "user_checkin": "打卡系統",
+    "user_take_leave": "請假系統",
+    "user_overtime": "加班系統",
+    "user_orderin": "訂餐系統",
+    "user_resignation": "離職單",
+    "HR_employee_list": "員工管理",
+    "HR_registration": "入職註冊",
+    "HR_takeleave_review": "請假審核",
+    "HR_resignation_review": "離職審核",
+    "HR_department_transition": "部門異動單",
+    "HR_salary_transition": "薪資異動單",
+    "PD_add_product": "新增產品",
+    "PD_product_list": "產品管理",
+    "PD_order_list": "訂單管理",
+    "PD_forum_list": "討論區管理",
+    "BOSS_salary_review": "薪水異動審核",
+    "BOSS_department_review": "部門異動審核"
+}

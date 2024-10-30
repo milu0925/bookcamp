@@ -1,13 +1,20 @@
 :root {
+  --m-bg-dark: #1b1c30;
+  --m-yellow: #ccb201;
   --m-green: #047857;
-  --m-light-green: #d1fae5;
-  --m-gray: #e7eaee;
-  --m-brown: #957400;
-  --m-light-brown: #fff7d9;
-  -m-red: #b91c1c;
-  --m-light-red: #fee2e2;
+  --m-green-30: #39dac41e;
+  --m-light-green: #51bd8b;
+  --m-blue: #acb9ca;
 }
 
 .manage {
   display: flex;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--m-bg-dark);
+  color: white;
+}
+
+.manage-w {
+  background-color: white;
 }

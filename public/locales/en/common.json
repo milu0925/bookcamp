@@ -1,0 +1,21 @@
+{
+    "user_data": "Personal information",
+    "user_salary": "Personal salary",
+    "user_checkin": "Checkin",
+    "user_take_leave": "Take leave",
+    "user_overtime": "Overtime",
+    "user_orderin": "Order Food",
+    "user_resignation": "Personal resignation",
+    "HR_employee_list": "Employee",
+    "HR_takeleave_review": "Takeleave review",
+    "HR_department_transition": "Department transition",
+    "HR_salary_transition": "Salary transition",
+    "HR_registration": "Registration",
+    "HR_resignation_review": "Resignation review",
+    "PD_add_product": "Add product",
+    "PD_product_list": "Product",
+    "PD_order_list": "Orders",
+    "PD_forum_list": "Forum",
+    "BOSS_salary_review": "Salary review",
+    "BOSS_department_review": "Department review"
+}

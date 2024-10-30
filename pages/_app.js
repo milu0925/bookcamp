@@ -6,8 +6,9 @@ import "@/styles/manage.scss";
 
 import { AuthContext } from "/hooks/auth-context";
 import { CartContext } from "/hooks/cart-context";
+import { appWithTranslation } from "next-i18next";
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
   return (
     <AuthContext>
       <CartContext>
@@ -15,4 +16,6 @@ export default function App({ Component, pageProps }) {
       </CartContext>
     </AuthContext>
   );
-}
+};
+
+export default appWithTranslation(App);
