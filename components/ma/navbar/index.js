@@ -33,7 +33,11 @@ import { IoFastFoodOutline, IoArrowRedo } from "react-icons/io5";
 
 function NavLink({ href, children }) {
   const router = useRouter();
+  // 選擇到的按鈕加上css
   const isActive = router.pathname === href ? style.active : "";
+  // 假設沒有此身分時鎖住按鈕
+  // const lockbtn = user ? style.locked : "";
+
   return (
     <li className={isActive}>
       <Link href={href}>{children}</Link>
@@ -75,7 +79,6 @@ export default function MNavbar(props) {
   const handleReturnStore = () => {
     router.push("/");
   };
-
   return (
     <div className={`${style.navbar} ${props.bgw ? style.navbar_w : ""}`}>
       <div className={style.user_image}>
@@ -103,81 +106,29 @@ export default function MNavbar(props) {
         </button>
       </div>
       <ul>
-        <NavLink href="/ma/manage/person">
-          <FaUserPen />
-          {t("user_data")}
-        </NavLink>
-        <NavLink href="/ma/manage/salary">
-          <GiMoneyStack />
-          {t("user_salary")}
-        </NavLink>
         <NavLink href="/ma/manage/checkin">
           <TbCalendarPin />
-          {t("user_checkin")}
+          {t("checkin_system")}
         </NavLink>
-        <NavLink href="/ma/manage/takeleave">
+        <NavLink href="/ma/manage/list">
           <GiNightSleep />
-          {t("user_take_leave")}
-        </NavLink>
-        <NavLink href="/ma/manage/overtime">
-          <MdMoreTime />
-          {t("user_overtime")}
+          {t("list_system")}
         </NavLink>
         <NavLink href="/ma/manage/orderin">
           <IoFastFoodOutline />
-          {t("user_orderin")}
+          {t("orderin_system")}
         </NavLink>
-        <NavLink href="/ma/manage/resignation">
+        <NavLink href="/ma/manage/verify">
           <MdTimeToLeave />
-          {t("user_resignation")}
+          {t("verify_system")}
         </NavLink>
-        <NavLink href="/ma/manage/ulist">
+        <NavLink href="/ma/manage/hr">
           <FaUsersCog />
-          {t("HR_employee_list")}
+          {t("HR_system")}
         </NavLink>
-        <NavLink href="/ma/manage/takeleave_review">
-          <FaUsersCog />
-          {t("HR_takeleave_review")}
-        </NavLink>
-        <NavLink href="/ma/manage/departmentC">
-          <FaArrowsDownToPeople />
-          {t("HR_department_transition")}
-        </NavLink>
-        <NavLink href="/ma/manage/salaryC">
-          <MdCurrencyExchange />
-          {t("HR_salary_transition")}
-        </NavLink>
-        <NavLink href="/ma/manage/registration">
-          <FaPersonCirclePlus />
-          {t("HR_registration")}
-        </NavLink>
-        <NavLink href="/ma/manage/quitApply">
-          <FaPersonCircleXmark />
-          {t("HR_resignation_review")}
-        </NavLink>
-        <NavLink href="/ma/manage/addp">
-          <MdOutlineAddBox />
-          {t("PD_add_product")}
-        </NavLink>
-        <NavLink href="/ma/manage/plist">
-          <LuBaggageClaim />
-          {t("PD_product_list")}
-        </NavLink>
-        <NavLink href="/ma/manage/olist">
-          <RiFileList3Fill />
-          {t("PD_order_list")}
-        </NavLink>
-        <NavLink href="/ma/manage/flist">
+        <NavLink href="/ma/manage/pm">
           <MdOutlineForum />
-          {t("PD_forum_list")}
-        </NavLink>
-        <NavLink href="/ma/manage/salary_review">
-          <MdOutlineForum />
-          {t("BOSS_salary_review")}
-        </NavLink>
-        <NavLink href="/ma/manage/department_review">
-          <MdOutlineForum />
-          {t("BOSS_department_review")}
+          {t("PM_system")}
         </NavLink>
       </ul>
     </div>

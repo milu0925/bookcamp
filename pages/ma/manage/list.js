@@ -2,7 +2,7 @@ import React from "react";
 import ManageLayout from "@/components/layout/manage-layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export default function ManageOvertime() {
+export default function ManageList() {
   return <ManageLayout></ManageLayout>;
 }
 

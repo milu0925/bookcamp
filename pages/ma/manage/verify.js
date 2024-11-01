@@ -2,7 +2,7 @@ import React from "react";
 import ManageLayout from "@/components/layout/manage-layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export default function ManageQuitApply() {
+export default function ManageVerify() {
   return <ManageLayout></ManageLayout>;
 }
 

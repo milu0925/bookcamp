@@ -2,7 +2,7 @@ import React from "react";
 import ManageLayout from "@/components/layout/manage-layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export default function ManageSalaryC() {
+export default function ManagePM() {
   return <ManageLayout></ManageLayout>;
 }
 
