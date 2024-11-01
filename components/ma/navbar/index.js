@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import style from "./navbar.module.scss";
 import { useRouter } from "next/router";
@@ -28,8 +28,10 @@ import {
   MdOutlineForum,
   MdMoreTime,
 } from "react-icons/md";
-import { GiMoneyStack, GiNightSleep } from "react-icons/gi";
+import { GiNightSleep } from "react-icons/gi";
 import { IoFastFoodOutline, IoArrowRedo } from "react-icons/io5";
+
+import { get_manage } from "@/hooks/call-ma-api";
 
 function NavLink({ href, children }) {
   const router = useRouter();
@@ -79,17 +81,33 @@ export default function MNavbar(props) {
   const handleReturnStore = () => {
     router.push("/");
   };
+  // 此刻登入的會員
+  const [employee, setEmployee] = useState({});
+  useEffect(() => {
+    getData();
+  }, []);
+  const getData = async () => {
+    const data = await get_manage();
+    if (data?.state === "success") {
+      setEmployee(data.data);
+    }
+  };
+
   return (
     <div className={`${style.navbar} ${props.bgw ? style.navbar_w : ""}`}>
       <div className={style.user_image}>
-        <img src={`${domain}/images/user/user.svg`} />
+        <img
+          src={`${domain}${
+            employee ? employee.u_img : "/images/user/user.svg"
+          }`}
+        />
         <button>
           <MdAddAPhoto />
         </button>
       </div>
       <div className={style.user_info}>
-        <div>陳情賣</div>
-        <div>UI/UX組</div>
+        <div>{employee ? employee.u_name : "沒有使用者"}</div>
+        <div>{employee ? employee.department : "沒有組別"}</div>
       </div>
       <div className={style.navbar_arg}>
         <button onClick={handleHome}>
@@ -118,18 +136,44 @@ export default function MNavbar(props) {
           <IoFastFoodOutline />
           {t("orderin_system")}
         </NavLink>
-        <NavLink href="/ma/manage/verify">
-          <MdTimeToLeave />
-          {t("verify_system")}
-        </NavLink>
-        <NavLink href="/ma/manage/hr">
-          <FaUsersCog />
-          {t("HR_system")}
-        </NavLink>
-        <NavLink href="/ma/manage/pm">
-          <MdOutlineForum />
-          {t("PM_system")}
-        </NavLink>
+        {employee ? (
+          employee.d_auth == 1 ? (
+            <NavLink href="/ma/manage/verify">
+              <MdTimeToLeave />
+              {t("verify_system")}
+            </NavLink>
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+        {employee ? (
+          (employee.d_auth <= 2 && employee.department === "HR") ||
+          employee.department === "BOSS" ? (
+            <NavLink href="/ma/manage/hr">
+              <FaUsersCog />
+              {t("HR_system")}
+            </NavLink>
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+        {employee ? (
+          (employee.d_auth <= 2 && employee.department === "PM") ||
+          employee.department === "BOSS" ? (
+            <NavLink href="/ma/manage/pm">
+              <MdOutlineForum />
+              {t("PM_system")}
+            </NavLink>
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
       </ul>
     </div>
   );

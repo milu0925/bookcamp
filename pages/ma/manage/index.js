@@ -2,6 +2,7 @@ import React from "react";
 import ManageLayout from "@/components/layout/manage-layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Manage_Home from "@/components/ma/content/home/home";
+
 export default function Manage() {
   return (
     <ManageLayout>
